@@ -7,7 +7,7 @@
         care: ["Dry clean only", "Do not bleach", "Iron at low temperature"] },
             { id: 2, name: "Dhanak 3PC", cat: "Winter", price: 8775, rating: 4, img: "winter6.webp", desc: "<strong>DYED EMBROIDERED DHANAK SHIRT</strong> <br><strong>DYED DHANAK TROUSER</strong> <br><strong>PASHMINA SHAW</strong>",
         care: ["Dry clean only", "Do not bleach", "Iron at low temperature"] },
-            { id: 3, name: "PC Printed Suit", cat: "Winter", price: 4796, rating: 4, img: "winter7.webp", desc: "<strong>PRINTED BLENDED RAW SILK SHIRT</strong> <br><strong>PRINTED BLENDED  RAW SILK TROUSER</strong> <br><strong>PRINTED MONAR DUPATTA</strong>",
+            { id: 3, name: "#PC Printed Suit", cat: "Winter", price: 4796, rating: 4, img: "winter7.webp", desc: "<strong>PRINTED BLENDED RAW SILK SHIRT</strong> <br><strong>PRINTED BLENDED  RAW SILK TROUSER</strong> <br><strong>PRINTED MONAR DUPATTA</strong>",
         care: ["Dry clean only", "Do not bleach", "Iron at low temperature"] },
             { id: 4, name: "Dhanak 3PC", cat: "Winter", price: 8775, rating: 4, img: "winter5.webp", desc: "<strong>DYED EMBROIDERED DHANAK SHIRT</strong>  <br><strong>DYED DHANAK TROUSER</strong> <br><strong>PASHMINA SHAWL</strong> ",
         care: ["Dry clean only", "Do not bleach", "Iron at low temperature"] },
@@ -82,61 +82,26 @@
         let cart = [];
         let selectedSize = null;
 
-// PRODUCT DETAILS MODAL WITH RELATED CARDS LOGIC
-function openDetails(id) {
-    const p = products.find(prod => prod.id === id);
-    if (!p) return;
-
-    // 1. Main Content Update
-    document.getElementById('detailImg').src = p.img;
-    document.getElementById('detailName').innerText = p.name;
-    document.getElementById('detailCat').innerText = p.cat;
-    document.getElementById('detailPrice').innerText = `PKR ${p.price.toLocaleString()}`;
-    document.getElementById('detailStars').innerText = '★'.repeat(p.rating) + '☆'.repeat(5 - p.rating);
-    
-    // Description aur Care Instructions (HTML Tags support ke sath)
-    document.getElementById('detailDesc').innerHTML = p.desc;
-    
-    // 2. RELATED PRODUCTS LOGIC
-    const relatedGrid = document.getElementById('relatedGrid');
-    
-    // Filter: Same category ho, magar current product na ho
-    const relatedItems = products
-        .filter(item => item.cat === p.cat && item.id !== p.id)
-        .sort(() => 0.5 - Math.random()) // Randomize taake har baar naye suits dikhein
-        .slice(0, 4); // Sirf 4 cards dikhane ke liye
-
-    if (relatedItems.length > 0) {
-        relatedGrid.innerHTML = relatedItems.map(rp => `
-            <div class="group cursor-pointer" onclick="openDetails(${rp.id})">
-                <div class="aspect-[3/4] overflow-hidden bg-[#111] mb-4 relative border border-white/5 group-hover:border-amber-500/30 transition-all duration-500">
-                    <img src="${rp.img}" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
-                </div>
-                <p class="text-[9px] text-amber-500 uppercase tracking-widest mb-1">${rp.cat}</p>
-                <div class="flex flex-col font-light uppercase text-[10px] tracking-wider">
-                    <span class="text-white">${rp.name}</span>
-                    <span class="text-gray-500 mt-1">PKR ${rp.price.toLocaleString()}</span>
-                </div>
-            </div>
-        `).join('');
-    } else {
-        relatedGrid.innerHTML = `<p class="text-gray-600 text-[10px] uppercase">More pieces coming soon</p>`;
-    }
-
-    // 3. UI BEHAVIOR
-    const overlay = document.getElementById('productDetailView');
-    overlay.classList.add('details-open'); // Sidebar open logic
-    
-    // Jab naya product select ho, toh sidebar scroll wapis top par chala jaye
-    overlay.scrollTo({ top: 0, behavior: 'smooth' }); 
-    
-    document.body.style.overflow = 'hidden'; // Lock background scroll
-    document.getElementById('detailAddBtn').onclick = () => addToCart(p.id);
-}
-
-
-
-
+        // RENDER PRODUCTS
+        function renderProducts(data = products) {
+            document.getElementById('productGrid').innerHTML = data.map(p => `
+                <div class="group product-card cursor-pointer">
+                    <div class="aspect-[3/4] overflow-hidden bg-[#111] mb-6 relative" onclick="openDetails(${p.id})">
+                        <img src="${p.img}" class="w-full h-full object-cover grayscale transition-all duration-1000">
+                       <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center">
+                         <span class="view-details-btn">
+                             View Details </span>
+                             </div>
+                              </div>
+                              <div class="star-rating mb-2">${'★'.repeat(p.rating)}${'☆'.repeat(5 - p.rating)}</div>
+                              <p class="text-[10px] text-amber-500 uppercase tracking-widest mb-1">${p.cat}</p>
+                              <div class="flex justify-between font-light uppercase text-xs tracking-wider">
+                                 <span>${p.name}</span>
+                                 <span>PKR ${p.price.toLocaleString()}</span>
+                                 </div>
+                                 </div>
+                                `).join('');
+                            }
                             
                             // SORT PRODUCTS
                             function sortItems() {
@@ -203,18 +168,13 @@ function closeDetails() {
 
                             
                             // Accordion toggle logic
-                          document.addEventListener("DOMContentLoaded", () => {
-  const accBtns = document.querySelectorAll(".accordion-btn");
-  accBtns.forEach(btn => {
-    btn.addEventListener("click", () => {
-      const content = btn.nextElementSibling;
-      content.style.maxHeight = content.style.maxHeight 
-        ? null 
-        : content.scrollHeight + "px";
-    });
-  });
-});
-
+                           const accBtns = document.querySelectorAll(".accordion-btn");
+                           accBtns.forEach(btn => {
+                           btn.addEventListener("click", () => {
+                           const content = btn.nextElementSibling;
+                           content.style.maxHeight = content.style.maxHeight ? null : content.scrollHeight + "px";
+                           });
+                           });
 
                             // MOBILE MENU TOGGLE
                             function toggleMenu() {
