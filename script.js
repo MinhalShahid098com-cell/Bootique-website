@@ -78,292 +78,322 @@
         care: ["Dry clean only", "Do not bleach", "Iron at low temperature"] },
         ];
 
-        // GLOBAL VARIABLES
-        let cart = [];
-        let selectedSize = null;
+    // ------------------------
+// GLOBAL VARIABLES
+// ------------------------
+let cart = [];
+let selectedSize = null;
 
-        // RENDER PRODUCTS
-        function renderProducts(data = products) {
-            document.getElementById('productGrid').innerHTML = data.map(p => `
-                <div class="group product-card cursor-pointer">
-                    <div class="aspect-[3/4] overflow-hidden bg-[#111] mb-6 relative" onclick="openDetails(${p.id})">
-                        <img src="${p.img}" class="w-full h-full object-cover grayscale transition-all duration-1000">
-                       <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center">
-                         <span class="view-details-btn">
-                             View Details </span>
-                             </div>
-                              </div>
-                              <div class="star-rating mb-2">${'★'.repeat(p.rating)}${'☆'.repeat(5 - p.rating)}</div>
-                              <p class="text-[10px] text-amber-500 uppercase tracking-widest mb-1">${p.cat}</p>
-                              <div class="flex justify-between font-light uppercase text-xs tracking-wider">
-                                 <span>${p.name}</span>
-                                 <span>PKR ${p.price.toLocaleString()}</span>
-                                 </div>
-                                 </div>
-                                `).join('');
-                            }
-                            
-                            // SORT PRODUCTS
-                            function sortItems() {
-                                const order = document.getElementById('sortOrder').value;
-                                let sortedData = [...products]; 
-                                if (order === 'low') {
-                                    sortedData.sort((a, b) => a.price - b.price);
-                                } else if (order === 'high') {
-                                    sortedData.sort((a, b) => b.price - a.price);
-                                }
-                                
-                                renderProducts(sortedData);
-                             }
 
-                            function filterCategory(cat) {
-    const filtered = cat === 'all' ? products : products.filter(p => p.cat === cat);
-    renderProducts(filtered);
+// Render products on main page
+function renderProducts(data = products) {
+    const container = document.getElementById('productGrid');
+    if (!container) return;
 
-    // Update heading dynamically
-    const heading = document.getElementById('catTitle');
-    heading.innerText = cat === 'all' ? 'Our Collection' : `${cat} Collection`;
+    container.innerHTML = data.map(p => `
+        <div class="product-card group">
+            <div class="aspect-[3/4] overflow-hidden bg-[#111] mb-3 border border-white/5 group-hover:border-amber-500/30 transition-all duration-500">
+                <img src="${p.img}"
+                     class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                     alt="${p.name}">
+            </div>
 
-    // Smooth scroll to products section
-    const shopSection = document.getElementById('shop');
-    shopSection.scrollIntoView({ behavior: 'smooth' });
+            <p class="text-[9px] text-amber-500 uppercase tracking-widest mb-1">${p.cat}</p>
+
+            <div class="flex flex-col font-light uppercase text-[10px] tracking-wider mb-3">
+                <span class="text-white">${p.name}</span>
+                <span class="text-gray-500 mt-1">PKR ${p.price.toLocaleString()}</span>
+            </div>
+
+            <button onclick="openDetails(${p.id})"
+                class="detail-action-btn w-full">
+                Quick View
+            </button>
+        </div>
+    `).join('');
 }
 
 
-                            // SEARCH PRODUCTS
-                            function searchProducts() { 
-                                const q = document.getElementById('searchBar').value.toLowerCase(); renderProducts(products.filter(p => p.name.toLowerCase().includes(q))); 
-                            }
-                            
-                            renderProducts();
+// Render related products
+function renderRelatedProducts(currentId, maxItems = 4) {
+    if (typeof products === "undefined") return;
 
-                            // PRODUCT DETAILS MODAL
-                           function openDetails(id) {
+    const container = document.getElementById('relatedProducts');
+    if (!container) return;
+
+    const currentProduct = products.find(p => p.id === currentId);
+    if (!currentProduct) return;
+
+    const related = products
+        .filter(p => p.cat === currentProduct.cat && p.id !== currentId)
+        .slice(0, maxItems);
+
+    if (related.length === 0) {
+        container.innerHTML = `<p class="text-gray-500 text-xs">No related products</p>`;
+        return;
+    }
+
+    container.innerHTML = related.map(p => `
+        <div class="product-card min-w-[220px]">
+            <div class="aspect-[3/4] overflow-hidden bg-[#111] mb-3 border border-white/5">
+                <img src="${p.img}" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" alt="${p.name}">
+            </div>
+
+            <p class="text-[9px] text-amber-500 uppercase tracking-widest mb-1">${p.cat}</p>
+
+            <div class="uppercase text-[10px] tracking-wider mb-3">
+                <div>${p.name}</div>
+                <div class="text-gray-500 mt-1">PKR ${p.price.toLocaleString()}</div>
+            </div>
+
+            <button class="detail-action-btn w-full" onclick="openDetails(${p.id})">
+                Quick View
+            </button>
+        </div>
+    `).join('');
+}
+
+// ================================
+// SORT, FILTER & SEARCH
+// ================================
+function sortItems() {
+    const order = document.getElementById('sortOrder').value;
+    let sortedData = [...products]; 
+    if (order === 'low') sortedData.sort((a, b) => a.price - b.price);
+    else if (order === 'high') sortedData.sort((a, b) => b.price - a.price);
+    renderProducts(sortedData);
+}
+
+function filterCategory(cat) {
+    const filtered = cat === 'all' ? products : products.filter(p => p.cat === cat);
+    renderProducts(filtered);
+    document.getElementById('catTitle').innerText = cat === 'all' ? 'Our Collection' : `${cat} Collection`;
+    document.getElementById('shop').scrollIntoView({ behavior: 'smooth' });
+}
+
+function searchProducts() { 
+    const q = document.getElementById('searchBar').value.toLowerCase();
+    renderProducts(products.filter(p => p.name.toLowerCase().includes(q)));
+}
+
+// ================================
+// PRODUCT DETAILS MODAL
+// ================================
+function openDetails(id) {
     const p = products.find(prod => prod.id === id);
+    if (!p) return;
+
     document.getElementById('detailImg').src = p.img;
     document.getElementById('detailName').innerText = p.name;
     document.getElementById('detailCat').innerText = p.cat;
     document.getElementById('detailPrice').innerText = `PKR ${p.price.toLocaleString()}`;
     document.getElementById('detailStars').innerText = '★'.repeat(p.rating) + '☆'.repeat(5 - p.rating);
-    document.getElementById('detailAddBtn').onclick = () => addToCart(p.id);
-    
-    // Render HTML tags
     document.getElementById('detailDesc').innerHTML = p.desc;
-    document.getElementById('detailCare').innerHTML = p.care
-        ? p.care.map(item => `<li>${item}</li>`).join('') : 'N/A';
+    document.getElementById('detailCare').innerHTML = p.care.map(item => `<li>${item}</li>`).join('');
+    document.getElementById('detailAddBtn').onclick = () => addToCart(p.id);
 
     const overlay = document.getElementById('productDetailView');
     overlay.classList.add('details-open');
-    document.body.style.overflow = 'hidden'; // prevent background scroll
+    document.body.style.overflow = 'hidden';
+
+    // Render related products
+    renderRelatedProducts(id);
 }
 
-// CLOSE PRODUCT DETAILS OVERLAY
 function closeDetails() {
     const overlay = document.getElementById('productDetailView');
     overlay.classList.remove('details-open');
-    document.body.style.overflow = 'auto'; // restore scrolling
+    document.body.style.overflow = 'auto';
 }
 
-                            
+// ================================
+// CART
+// ================================
+function addToCart(id) {
+    const item = products.find(p => p.id === id);
+    cart.push({ ...item, size: selectedSize || 'M' });
+    updateCart();
+    toggleCart();
+    selectedSize = null; 
+}
 
-                            
-                            // Accordion toggle logic
-                           const accBtns = document.querySelectorAll(".accordion-btn");
-                           accBtns.forEach(btn => {
-                           btn.addEventListener("click", () => {
-                           const content = btn.nextElementSibling;
-                           content.style.maxHeight = content.style.maxHeight ? null : content.scrollHeight + "px";
-                           });
-                           });
+function updateCart() {
+    const container = document.getElementById('cartItems');
+    container.innerHTML = cart.map((item, index) => `
+        <div class="flex gap-4 items-center">
+            <img src="${item.img}" class="w-16 h-20 object-cover">
+            <div class="flex-1 text-[10px] uppercase">
+                <h4 class="font-bold">${item.name}</h4>
+                <p class="text-amber-500">PKR ${item.price.toLocaleString()}</p>
+            </div>
+            <button onclick="cart.splice(${index},1); updateCart()">&times;</button>
+        </div>
+    `).join('');
+    const total = cart.reduce((sum, item) => sum + item.price, 0);
+    document.getElementById('totalPrice').innerText = `PKR ${total.toLocaleString()}`;
+    document.getElementById('cartCount').innerText = cart.length;
+}
 
-                            // MOBILE MENU TOGGLE
-                            function toggleMenu() {
-                                const menu = document.getElementById('mobileMenu');
-                                const btn = document.getElementById('menuBtn');
-                                
-                                menu.classList.toggle('menu-open');
-                                 btn.classList.toggle('open');
-                                 
-                                 if (menu.classList.contains('menu-open')) {
-                                    document.body.style.overflow = 'hidden';
-                                
-                                } else {
-                                    document.body.style.overflow = 'auto';
-                                }
-                            }
-                            
-                            // CART FUNCTIONS
-                            function addToCart(id) {
-                                const item = products.find(p => p.id === id);
-                                cart.push({ ...item, size: selectedSize || 'M' });
-                                updateCart();
-                                toggleCart();
-                            }
+function selectSize(size, element) {
+    selectedSize = size;
+    const buttons = element.parentElement.querySelectorAll('.size-btn');
+    buttons.forEach(btn => btn.classList.remove('active'));
+    element.classList.add('active');
+}
 
-                           function updateCart() {
-                             document.getElementById('cartCount').innerText = cart.length;
-                             const container = document.getElementById('cartItems');
-                             container.innerHTML = cart.map((item, index) => `
-                             <div class="flex gap-4 items-center">
-                                <img src="${item.img}" class="w-16 h-20 object-cover">
-                                <div class="flex-1 text-[10px] uppercase">
-                                <h4 class="font-bold">${item.name}</h4>
-                                <p class="text-amber-500">PKR ${item.price.toLocaleString()}</p>
-                            </div>
-                            <button onclick="cart.splice(${index},1); updateCart()">&times;</button>
-                            </div>
-                            `).join('');
-                            const total = cart.reduce((sum, item) => sum + item.price, 0);
-                            document.getElementById('totalPrice').innerText = `PKR ${total.toLocaleString()}`;
-                        }
-                        
-                        // Size selection
-                        function selectSize(size, element) {
-                            selectedSize = size;
-                            
-                            const buttons = element.parentElement.querySelectorAll('.size-btn');
-                            buttons.forEach(btn => btn.classList.remove('active'));
-                            element.classList.add('active');
-                        }
-                        
-                        // Cart button logic
-                        function checkout() {
-                            if (cart.length === 0) {
-                            alert("👜 Your bag is empty!");
-                            return;
-                        }
-                        
-                        let message = "Aura Closet Order:%0A------------------%0A";
-                        cart.forEach(item => {
-                        message += `- ${item.name} (${item.size}): PKR ${item.price.toLocaleString()}%0A`;
-                        });
-                        message += `%0A*Total: ${document.getElementById('totalPrice').innerText}*`;
+function toggleCart() {
+    document.getElementById('cartSidebar').classList.toggle('cart-open');
+}
 
-                        // Redirect to WhatsApp
-                        window.open(`https://wa.me/923001234567?text=${message}`);
-                        }
+function checkout() {
+    if (cart.length === 0) return alert("👜 Your bag is empty!");
+    let message = "Aura Closet Order:%0A------------------%0A";
+    cart.forEach(item => { message += `- ${item.name} (${item.size}): PKR ${item.price.toLocaleString()}%0A`; });
+    message += `%0A*Total: ${document.getElementById('totalPrice').innerText}*`;
+    window.open(`https://wa.me/923001234567?text=${message}`);
+}
 
-                        // Cart slider 
-                        function toggleCart() {
-                        document.getElementById('cartSidebar').classList.toggle('cart-open');
-                        }
-                        
-                        // LOGIN MODAL
-                        window.addEventListener("DOMContentLoaded", () => {
-                        const loggedIn = localStorage.getItem("isLoggedIn") || sessionStorage.getItem("isLoggedIn");
-                        const userEmail = localStorage.getItem("userEmail") || sessionStorage.getItem("userEmail");
+// ================================
+// LOGIN/LOGOUT
+// ================================
+function openLoginModal() {
+    document.getElementById('loginModal').classList.remove('hidden');
+    document.getElementById('loginModal').classList.add('flex');
+}
 
-                        if (loggedIn) {
-                        showLoginSuccess(userEmail);
-                        }
-                        });
-                        
-                        const loginForm = document.querySelector("#loginModal form");
-                        loginForm.addEventListener("submit", function (e) {
-                            e.preventDefault();
-                            
-                            const email = this.querySelector("input[type='email']").value;
-                            const password = this.querySelector("input[type='password']").value;
-                            const remember = this.querySelector("input[type='checkbox']").checked;
-                            
-                            if (remember) {
-                                localStorage.setItem("userEmail", email);
-                                localStorage.setItem("isLoggedIn", true);
-                            } else {
-                                sessionStorage.setItem("userEmail", email);
-                                sessionStorage.setItem("isLoggedIn", true);
-                            }
-                            
-                            closeLoginModal();
-                            showLoginSuccess(email);
-                        });
+function closeLoginModal() {
+    document.getElementById('loginModal').classList.add('hidden');
+    document.getElementById('loginModal').classList.remove('flex');
+}
 
+function logout() {
+    localStorage.removeItem("userEmail");
+    localStorage.removeItem("isLoggedIn");
+    sessionStorage.removeItem("userEmail");
+    sessionStorage.removeItem("isLoggedIn");
+    const toast = document.createElement("div");
+    toast.innerText = "Logged out successfully!";
+    toast.className = "fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-amber-500 text-black px-6 py-3 rounded-xl shadow-lg text-xs uppercase tracking-widest z-50";
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 3000);
+}
 
-                        function showLoginSuccess(email) {
-                        const toast = document.createElement("div");
-                        toast.innerText = `Login, ${email}!`;
-                        toast.className = "fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-amber-500 text-black px-6 py-3 rounded-xl shadow-lg text-xs uppercase tracking-widest z-50";
-                        document.body.appendChild(toast);
-
-                        setTimeout(() => {
-                        toast.remove();
-                        }, 3000);
-                       }
-
-                        // Logout function
-                        function logout() {
-                        localStorage.removeItem("userEmail");
-                        localStorage.removeItem("isLoggedIn");
-                        sessionStorage.removeItem("userEmail");
-                        sessionStorage.removeItem("isLoggedIn");
-
-                        const toast = document.createElement("div");
-                        toast.innerText = "Logged out successfully!";
-                        toast.className = "fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-amber-500 text-black px-6 py-3 rounded-xl shadow-lg text-xs uppercase tracking-widest z-50";
-                        document.body.appendChild(toast);
-
-                        setTimeout(() => toast.remove(), 3000);
-                        }
-
-                        // Open/Close modal functions 
-                        function openLoginModal() {
-                        document.getElementById('loginModal').classList.remove('hidden');
-                        document.getElementById('loginModal').classList.add('flex');
-                        }
-
-                        function closeLoginModal() {
-                        document.getElementById('loginModal').classList.add('hidden');
-                        document.getElementById('loginModal').classList.remove('flex');
-                        }
-
-                        // FOOTER & BACK TO TOP
-                        document.getElementById('year').textContent = new Date().getFullYear();
-                        const backToTopBtn = document.getElementById("backToTopBtn");
-
-                        window.onscroll = function () {
-                        const btn = document.getElementById("backToTopBtn");
-                        if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
-                            btn.classList.add("show");
-                        } else {
-                            btn.classList.remove("show");
-                        }
-                        };
-        
-                       // INIT LUCIDE ICONS (FINAL & SAFE)
-window.addEventListener("load", () => {
-    if (window.lucide) {
-        lucide.createIcons();
-    }
+window.addEventListener("DOMContentLoaded", () => {
+    const loggedIn = localStorage.getItem("isLoggedIn") || sessionStorage.getItem("isLoggedIn");
+    const userEmail = localStorage.getItem("userEmail") || sessionStorage.getItem("userEmail");
+    if (loggedIn) showLoginSuccess(userEmail);
 });
 
+function showLoginSuccess(email) {
+    const toast = document.createElement("div");
+    toast.innerText = `Login, ${email}!`;
+    toast.className = "fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-amber-500 text-black px-6 py-3 rounded-xl shadow-lg text-xs uppercase tracking-widest z-50";
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 3000);
+}
 
-                       
-// TESTIMONIALS DOTS SLIDER
+// ================================
+// ACCORDION
+// ================================
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".accordion-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const content = btn.nextElementSibling;
+            content.style.maxHeight = content.style.maxHeight ? null : content.scrollHeight + "px";
+        });
+    });
+});
 
+      // --- MENU LOGIC ---
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const btn = document.getElementById('menuBtn');
+            menu.classList.toggle('menu-open');
+            btn.classList.toggle('open');
+            document.body.style.overflow = menu.classList.contains('menu-open') ? 'hidden' : 'auto';
+        }
+        // --- NAVIGATION LOGIC ---
+       function navigateTo(target) {
+    const sections = ['hero', 'shop', 'contact-section'];
+
+    // Sab hide karo
+    sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.add('hidden');
+    });
+
+    // Target dikhao
+    if (target === 'home') {
+        document.getElementById('hero').classList.remove('hidden');
+        document.getElementById('shop').classList.remove('hidden');
+        renderProducts(products);
+    } else if (target === 'contact-section') {
+        document.getElementById('contact-section').classList.remove('hidden');
+        document.getElementById('contact-section').scrollIntoView({ behavior: 'smooth' });
+    } else {
+        // Summer, Winter, Casual, Formal
+        document.getElementById('shop').classList.remove('hidden');
+        const filtered = products.filter(p => p.cat === target);
+        renderProducts(filtered);
+        document.getElementById('catTitle').innerText = target + " Collection";
+
+        // Scroll to shop section
+        const shopSection = document.getElementById('shop');
+        const yOffset = -80; // agar fixed navbar hai to adjust height
+        const y = shopSection.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+
+    // Mobile menu band karo click par
+    const menu = document.getElementById('mobileMenu');
+    if (menu.classList.contains('menu-open')) {
+        toggleMenu();
+    }
+}
+
+// ================================
+// FOOTER YEAR & BACK TO TOP
+// ================================
+document.getElementById('year').textContent = new Date().getFullYear();
+const backToTopBtn = document.getElementById("backToTopBtn");
+window.onscroll = () => {
+    if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) backToTopBtn.classList.add("show");
+    else backToTopBtn.classList.remove("show");
+};
+
+// ================================
+// LUCIDE ICONS INIT
+// ================================
+window.addEventListener("load", () => { if (window.lucide) lucide.createIcons(); });
+
+// ================================
+// TESTIMONIALS CAROUSEL
+// ================================
 const carousel = document.getElementById("testimonialCarousel");
 const dots = document.querySelectorAll(".dot");
-
 let currentIndex = 0;
-
 function updateCarousel() {
     carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
-
-    dots.forEach((dot, i) => {
-        dot.classList.toggle("active-dot", i === currentIndex);
-    });
+    dots.forEach((dot, i) => dot.classList.toggle("active-dot", i === currentIndex));
 }
+dots.forEach((dot, i) => dot.addEventListener("click", () => { currentIndex = i; updateCarousel(); }));
+setInterval(() => { currentIndex = (currentIndex + 1) % dots.length; updateCarousel(); }, 5000);
 
-dots.forEach((dot, index) => {
-    dot.addEventListener("click", () => {
-        currentIndex = index;
-        updateCarousel();
-    });
+// ================================
+// INITIALIZE PRODUCTS
+// ================================
+renderProducts();
+
+// Open Size Guide
+const openSizeGuide = document.getElementById('openSizeGuide');
+const sizeGuideModal = document.getElementById('sizeGuideModal');
+const closeSizeGuide = document.getElementById('closeSizeGuide');
+
+openSizeGuide.addEventListener('click', (e) => {
+    e.preventDefault();
+    sizeGuideModal.classList.remove('hidden');
 });
 
-// Auto slide (luxury feel)
-setInterval(() => {
-    currentIndex = (currentIndex + 1) % dots.length;
-    updateCarousel();
-}, 5000);
-
-updateCarousel();
+closeSizeGuide.addEventListener('click', () => {
+    sizeGuideModal.classList.add('hidden');
+});

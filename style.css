@@ -115,6 +115,14 @@
             letter-spacing: 0.3em;
         }
 
+        .view-details-btn:hover {
+    background: #f59e0b;
+    color: black;
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.35);
+    transform: translateY(-2px);
+}
+
+
         .checkout-btn-premium {
             width: 100%;
             padding: 18px;
@@ -420,3 +428,77 @@
     padding: 0 16px;
 }
 
+ 
+  /* Menu ko dikhane ke liye JS class */
+  #mobileMenu.menu-open {
+    transform: translateX(0) !important;
+  }
+
+  /* Active link color */
+  #mobileMenu a.active {
+    color: #f59e0b !important; /* Amber-500 */
+  }
+
+  
+/* ===============================
+   PRODUCT DETAIL RESPONSIVE FIX
+   (NO DESIGN CHANGE)
+================================ */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .product-detail-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .product-detail-image,
+  .product-detail-content {
+    width: 100%;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .product-detail-wrapper {
+    padding: 20px;
+  }
+
+  .product-detail-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .size-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .detail-action-btn {
+    padding: 14px;
+    font-size: 10px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.4rem;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+  }
+
+  .product-price {
+    font-size: 1.2rem;
+  }
+
+  .size-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 9px;
+  }
+}

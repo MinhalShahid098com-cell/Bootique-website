@@ -19,84 +19,86 @@
 
 <body class="overflow-x-hidden">
 
-    <!-- PRODUCT DETAILS OVERLAY (Next Page Feel) -->
-    <div id="productDetailView" class="sidebar fixed inset-0 z-[150] bg-[#0a0a0a] translate-x-full overflow-y-auto">
-        <div class="max-w-7xl mx-auto px-6 py-10">
-            <button onclick="closeDetails()"
-                class="mb-10 text-amber-500 uppercase tracking-widest text-xs flex items-center">← Back to
-                Collection</button>
-            <div class="grid md:grid-cols-2 gap-16">
-                <div class="aspect-[3/4] bg-[#111] overflow-hidden">
-                    <img id="detailImg" src="" class="w-full h-full object-cover">
+<!-- PRODUCT DETAILS OVERLAY (Next Page Feel) -->
+<div id="productDetailView" class="sidebar fixed inset-0 z-[150] bg-[#0a0a0a] translate-x-full overflow-y-auto">
+    <div class="max-w-7xl mx-auto px-6 py-10">
+        <button onclick="closeDetails()"
+            class="mb-10 text-amber-500 uppercase tracking-widest text-xs flex items-center">← Back to
+            Collection</button>
+        <div class="grid md:grid-cols-2 gap-16">
+            <!-- Product Image -->
+            <div class="aspect-[3/4] bg-[#111] overflow-hidden">
+                <img id="detailImg" src="" class="w-full h-full object-cover">
+            </div>
+
+            <!-- Product Info -->
+            <div class="flex flex-col justify-center">
+                <p id="detailCat" class="text-amber-500 uppercase tracking-[0.3em] text-[10px] mb-4"></p>
+                <h2 id="detailName" class="text-5xl md:text-7xl italic mb-6"></h2>
+                <div id="detailStars" class="star-rating mb-6"></div>
+                <p id="detailPrice" class="text-2xl mb-8 font-light"></p>
+
+                <!-- Size Selection -->
+                <div class="mb-8">
+                    <p class="text-[10px] uppercase tracking-widest mb-4 text-gray-500">Select Size</p>
+                    <div class="flex gap-4">
+                        <button onclick="selectSize('S', this)" class="size-btn">S</button>
+                        <button onclick="selectSize('M', this)" class="size-btn">M</button>
+                        <button onclick="selectSize('L', this)" class="size-btn">L</button>
+                        <button onclick="selectSize('XL', this)" class="size-btn">XL</button>
+                    </div>
                 </div>
-                <div class="flex flex-col justify-center">
-                    <p id="detailCat" class="text-amber-500 uppercase tracking-[0.3em] text-[10px] mb-4"></p>
-                    <h2 id="detailName" class="text-5xl md:text-7xl italic mb-6"></h2>
-                    <div id="detailStars" class="star-rating mb-6"></div>
-                    <p id="detailPrice" class="text-2xl mb-8 font-light"></p>
 
-                    <!-- Size Selection -->
+                <!-- Add to Closet Button -->
+                <button id="detailAddBtn" class="detail-action-btn">
+                    Add to Closet
+                </button>
 
-                    <div class="mb-8">
-                        <p class="text-[10px] uppercase tracking-widest mb-4 text-gray-500">Select Size</p>
-                        <div class="flex gap-4">
-                            <!-- We use a custom class 'size-btn' to handle the amber/black styling -->
-                            <button onclick="selectSize('S', this)" class="size-btn">S</button>
-                            <button onclick="selectSize('M', this)" class="size-btn">M</button>
-                            <button onclick="selectSize('L', this)" class="size-btn">L</button>
-                            <button onclick="selectSize('XL', this)" class="size-btn">XL</button>
+                <!-- PRODUCT DETAILS ACCORDION -->
+                <div class="mt-8">
+                    <div class="accordion">
+                        <button class="accordion-btn">Product Description</button>
+                        <div class="accordion-content">
+                            <p id="detailDesc" class="text-gray-400 text-sm leading-relaxed"></p>
                         </div>
                     </div>
 
-                    <!-- Add to Closet Button -->
-                    <button id="detailAddBtn" class="detail-action-btn">
-                        Add to Closet
-                    </button>
-                    <!-- PRODUCT DETAILS ACCORDION -->
-                     
-                    <div class="mt-8">
-                        <div class="accordion">
-                            <button class="accordion-btn">Product Description</button>
-                            <div class="accordion-content">
-                                <p id="detailDesc" class="text-gray-400 text-sm leading-relaxed">
-                <!-- JS se content aayega -->
-            </p>
-        </div>
-    </div>
+                    <div class="accordion">
+                        <button class="accordion-btn">Material & Care</button>
+                        <div class="accordion-content">
+                            <ul id="detailCare" class="text-gray-400 text-sm leading-relaxed list-disc list-inside"></ul>
+                        </div>
+                    </div>
+                </div>
 
-    <div class="accordion">
-        <button class="accordion-btn">Material & Care</button>
-        <div class="accordion-content">
-            <ul id="detailCare" class="text-gray-400 text-sm leading-relaxed list-disc list-inside">
-                <!-- JS se content aayega -->
-            </ul>
+                <!-- RELATED PRODUCTS -->
+              <div class="mt-12">
+                <h3 class="serif text-white uppercase tracking-[0.4em] text-xs mb-6">
+                    Related Products </h3>
+                    <div id="relatedProducts" class="flex gap-6 overflow-x-auto pb-4"></div>
+                </div>
+
+            </div>
         </div>
     </div>
 </div>
 
-                </div>
-            </div>
-        </div>
+<!-- MOBILE MENU -->
+ <div id="mobileMenu" class="fixed inset-0 z-[100] flex flex-col items-center justify-center transform -translate-x-full md:hidden">
+        <a href="javascript:void(0)" onclick="navigateTo('home')" class="py-4 text-2xl serif italic hover:text-amber-500">Home</a>
+        <a href="javascript:void(0)" onclick="navigateTo('Winter')" class="py-4 text-2xl serif italic hover:text-amber-500">Winter</a>
+        <a href="javascript:void(0)" onclick="navigateTo('Summer')" class="py-4 text-2xl serif italic hover:text-amber-500">Summer</a>
+        <a href="javascript:void(0)" onclick="navigateTo('Casual')" class="py-4 text-2xl serif italic hover:text-amber-500">Casual</a>
+        <a href="javascript:void(0)" onclick="navigateTo('Formal')" class="py-4 text-2xl serif italic hover:text-amber-500">Formal</a>
+        <a href="javascript:void(0)" onclick="navigateTo('contact-us')" class="py-4 text-2xl serif italic hover:text-amber-500">Contact Us</a>
     </div>
-
-
-    <!-- MOBILE MENU -->
-    <div id="mobileMenu" class="sidebar fixed inset-0 z-[60] translate-x-full lg:hidden">
-        <a href="#" onclick="toggleMenu()">Home</a>
-        <a href="#shop" onclick="toggleMenu()">Collection</a>
-        <a href="#reviews" onclick="toggleMenu()">Reviews</a>
-        <a href="#footer" onclick="toggleMenu()">Contact</a>
-
-        <div class="menu-footer">Aura Closet Luxury</div>
-    </div>
-
 
 <!-- NAVIGATION -->
 <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-500 border-b border-white/5 bg-black/60 backdrop-blur-xl">
     <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         
         <!-- Mobile Menu Toggle (Left on mobile) -->
-        <button id="menuBtn" onclick="toggleMenu()" class="lg:hidden z-[70] nav-icon">
+        <button id="menuBtn" onclick="toggleMenu()" class="nav-icon md:hidden relative z-[120]">
             <span class="line1"></span>
             <span class="line2"></span>
             <span class="line3"></span>
@@ -104,11 +106,10 @@
 
         <!-- Logo (Centered on mobile, Left on Desktop) -->
         <a href="#" class="brand-logo">
-    Aura Closet
+    Style Haven
 </a>
 
-
-        <!-- Desktop Navigation Links -->
+<!-- Desktop Navigation Links -->
         <div class="hidden lg:flex space-x-12 text-[10px] uppercase tracking-[0.3em] font-bold text-gray-300">
             <button onclick="filterCategory('all')" class="hover:text-amber-500 transition-colors duration-300">Collections</button>
             <button onclick="filterCategory('Formal')" class="hover:text-amber-500 transition-colors duration-300">Formal</button>
@@ -139,7 +140,7 @@
             <button onclick="closeLoginModal()"
                 class="absolute top-4 right-4 text-white/50 hover:text-amber-500 transition-colors text-2xl">&times;</button>
 
-            <h2 class="serif text-3xl italic text-amber-500 mb-8 text-center">Welcome Back</h2>
+            <h2 class="serif text-3xl italic text-amber-500 mb-8 text-center">Welcome</h2>
 
             <form onsubmit="event.preventDefault(); showToast('Access Granted'); closeLoginModal()">
                 <div class="mb-6">
@@ -161,9 +162,8 @@
                     <a href="#" class="text-amber-500 hover:text-white transition">Forgot?</a>
                 </div>
 
-                <!-- Button matched to Shop Collection Style -->
                 <button type="submit" class="login-submit-btn">
-                    Authorize Login
+                    Login
                 </button>
             </form>
 
@@ -175,7 +175,7 @@
 
 
     <!-- HERO -->
-    <section class="h-screen flex items-center justify-center text-center relative overflow-hidden">
+    <section id="home" class="h-screen flex items-center justify-center text-center relative overflow-hidden">
         <div class="absolute inset-0 bg-[url('https://images.unsplash.com')] bg-cover bg-center opacity-30"></div>
         <div class="relative z-10 px-6">
             <p class="text-amber-500 tracking-[0.8em] uppercase text-xs mb-4">Luxury Boutique</p>
@@ -214,30 +214,30 @@
     </main>
 
 <section id="reviews" class="bg-[#0a0a0a] py-24 px-6 text-center overflow-hidden">
-    <h2 class="text-4xl italic mb-12">Client Experiences</h2>
+    <h2 class="text-4xl italic mb-12">Why Shop With Us</h2>
 
     <div class="relative max-w-4xl mx-auto overflow-hidden">
         <div id="testimonialCarousel" class="flex transition-transform duration-700 ease-in-out">
             
             <div class="min-w-full px-6">
                 <p class="italic text-gray-400 mb-6">
-                    “The fit of the Midnight Tuxedo is unparalleled. Truly bespoke quality.”
+                    “Authentic products, guaranteed quality. We're here to asist you 24/7.”
                 </p>
-                <p class="text-amber-500 uppercase tracking-widest text-xs">— Ahmed K.</p>
+                <p class="text-amber-500 uppercase tracking-widest text-xs">— Style Haven.</p>
             </div>
 
             <div class="min-w-full px-6">
                 <p class="italic text-gray-400 mb-6">
-                    “Fast delivery to Lahore and the packaging was absolutely beautiful.”
+                    “Fast delivery straight to your doorstep. Oredered delivered within 3-5 business days ”
                 </p>
-                <p class="text-amber-500 uppercase tracking-widest text-xs">— Sarah M.</p>
+                <p class="text-amber-500 uppercase tracking-widest text-xs">— Style Haven.</p>
             </div>
 
             <div class="min-w-full px-6">
                 <p class="italic text-gray-400 mb-6">
-                    “Aura Closet is now my go-to for all formal events. 10/10 service.”
+                    “Full refund if the product doesn't meet your expections. Esay exchange for size or style mismatches.”
                 </p>
-                <p class="text-amber-500 uppercase tracking-widest text-xs">— Omar J.</p>
+                <p class="text-amber-500 uppercase tracking-widest text-xs">— Style Haven.</p>
             </div>
 
         </div>
@@ -285,14 +285,14 @@
                     </h4>
                     
                     <!-- Brand Logo -->
-                    <a href="#" class="brand-logo mb-6" > Aura Closet
+                    <a href="#" class="brand-logo mb-6" > Style Haven
                     </a>
 
 
                     <p class="text-gray-500 text-sm leading-relaxed italic">
                         "Luxury is not about being noticed, it is about being remembered."
                         <br><br>
-                        Crafted for the elite, Aura Closet brings together timeless silhouettes and premium
+                        Crafted for the elite, Style Haven brings together timeless silhouettes and premium
                         craftsmanship.
                     </p>
                 </div>
@@ -305,14 +305,14 @@
 
                     <nav class="flex flex-col space-y-5">
                         <a href="#shop" class="footer-link">View Collection</a>
-                        <a href="#" class="footer-link">Home</a>
-                        <a href="#" class="footer-link">Sizing Guide</a>
-                        <a href="#" class="footer-link">Returns & Exchange</a>
+                        <a href="#home" class="footer-link">Home</a>
+                        <a href="#" class="footer-link" id="openSizeGuide">Size Guide</a>
+                        <a href="#reviews" class="footer-link">Returns & Exchange</a>
                     </nav>
                 </div>
 
                 <!-- CONTACT US -->
-                <div class="flex flex-col">
+                <div id="contact-us" class="flex flex-col">
                     <h4 class="text-amber-500 uppercase tracking-[0.4em] text-[10px] mb-8 font-bold">
                         Contact Us
                     </h4>
@@ -337,7 +337,7 @@
                         <div class="flex items-center gap-3">
                             <i data-lucide="mail" class="w-4 h-4 text-amber-500"></i>
                             <a href="mailto:info@auracloset.com" class="hover:text-amber-500 transition">
-                                info@auracloset.com
+                                info@stylehaven.com
                             </a>
                         </div>
 
@@ -377,13 +377,12 @@
                         </a>
                     </div>
                 </div>
-
             </div>
 
              <!-- COPYRIGHT BAR -->
         <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center text-center">
             <p class="text-[9px] uppercase tracking-[0.5em] text-gray-600 mb-4 md:mb-0">
-                © <span id="year"></span> AURA CLOSET. Handcrafted Luxury.
+                © <span id="year"></span> Style Haven. Handcrafted Luxury.
             </p>
             <div class="flex space-x-8">
                 <a href="#" class="footer-link text-[9px] text-gray-600 lowercase tracking-widest">Privacy</a>
@@ -394,6 +393,14 @@
     </div>
 </footer>
 
+<!-- size modal -->
+            <div id="sizeGuideModal" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center hidden">
+    <div class="bg-[#111] p-6 rounded w-96">
+        <h2 class="serif text-2xl mb-4">Size Guide</h2>
+        <p class="text-sm mb-2">S = Small, M = Medium, L = Large, XL = Extra Large</p>
+        <button id="closeSizeGuide" class="checkout-btn-premium mt-4">Close</button>
+    </div>
+</div>
 
     <!-- BACK TO TOP BUTTON -->
     <button id="backToTopBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="Go to top">
