@@ -1,0 +1,422 @@
+        /* --- 1. FONTS & THEME --- */
+        h1,
+        h2,
+        h3,
+        .serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #0a0a0a;
+            color: white;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* --- 2. NAVIGATION & CIRCULAR BUTTONS --- */
+        .login-btn-premium,
+        .cart-btn-premium,
+        .social-icon-box,
+        #backToTopBtn,
+        #whatsapp-chat {
+            width: 44px;
+            height: 44px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: transparent;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            color: #f59e0b;
+        }
+
+        /*  ==Brand Logo=== */
+.brand-logo {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 700;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    background: linear-gradient(to right, #fde68a, #f59e0b, #fde68a);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+
+/* Buttons */
+.login-btn-premium:hover,
+.cart-btn-premium:hover,
+.social-icon-box:hover,
+#backToTopBtn:hover,
+ #whatsapp-chat:hover {
+        border-color: #f59e0b;
+         transform: translateY(-2px);
+        box-shadow: 0 0 15px rgba(245, 158, 11, 0.3);
+}
+
+        .cart-badge-premium {
+            position: absolute;
+            top: -1px;
+            right: -1px;
+            background: #f59e0b;
+            color: black;
+            font-size: 8px;
+            font-weight: 800;
+            width: 16px;
+            height: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 2px solid #0a0a0a;
+        }
+
+        /* --- 3. RECTANGULAR ACTION BUTTONS --- */
+        .hero-btn-premium,
+        .newsletter-btn-premium,
+        .detail-action-btn,
+        .checkout-btn-premium,
+        .login-submit-btn {
+            display: inline-block;
+            border: 1px solid #f59e0b;
+            background: #f59e0b;
+            color: black;
+            text-transform: uppercase;
+            font-weight: 700;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .hero-btn-premium {
+            background: transparent;
+            color: #f59e0b;
+            padding: 18px 48px;
+            font-size: 11px;
+            letter-spacing: 0.5em;
+        }
+
+        .newsletter-btn-premium {
+            padding: 14px 40px;
+            font-size: 10px;
+            letter-spacing: 0.3em;
+        }
+
+        .detail-action-btn {
+            width: 100%;
+            padding: 16px;
+            font-size: 11px;
+            letter-spacing: 0.3em;
+        }
+
+        .checkout-btn-premium {
+            width: 100%;
+            padding: 18px;
+            font-size: 11px;
+            letter-spacing: 0.4em;
+            margin-top: 10px;
+        }
+
+        .login-submit-btn {
+            width: 100%;
+            padding: 16px;
+            font-size: 10px;
+            letter-spacing: 0.4em;
+        }
+
+        .hero-btn-premium:hover,
+        .newsletter-btn-premium:hover,
+        .detail-action-btn:hover,
+        .checkout-btn-premium:hover,
+        .login-submit-btn:hover {
+            background: transparent;
+            color: #f59e0b;
+            box-shadow: 0 0 25px rgba(245, 158, 11, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* --- 4. PRODUCT CARDS & VIEW DETAILS --- */
+        
+.product-card img {
+    filter: none; 
+    transition: transform 0.5s ease; /* hover zoom smooth */
+}
+
+/* Hover effect for zoom only */
+.product-card:hover img {
+    transform: scale(1.05); /* small zoom on hover */
+}
+
+
+        .star-rating {
+            color: #f59e0b;
+            letter-spacing: 2px;
+            font-size: 10px;
+        }
+
+        .view-details-btn {
+            display: inline-block;
+            border: 1px solid #f59e0b;
+            background: transparent;
+            color: #f59e0b;
+            padding: 14px 32px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5em;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            backdrop-filter: blur(2px);
+        }
+
+        .size-btn {
+            width: 44px;
+            height: 44px;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            background: transparent;
+            color: white;
+            font-size: 10px;
+            text-transform: uppercase;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .size-btn:hover,
+        .size-btn.active {
+            background: #f59e0b;
+            color: black;
+            border-color: #f59e0b;
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
+        }
+
+        /* --- 5. SHOP FILTERS & DROPDOWN --- */
+        .filter-input-premium {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 10px 20px;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            outline: none;
+        }
+
+        .filter-input-premium:focus,
+        .filter-input-premium:hover {
+            border-color: #f59e0b;
+            background: rgba(245, 158, 11, 0.05);
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.2);
+        }
+
+        #sortOrder {
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org' width='12' height='12' fill='%23f59e0b' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            padding-right: 40px;
+        }
+
+        #sortOrder option {
+            background-color: #0a0a0a;
+            color: #f59e0b;
+            padding: 15px;
+            text-transform: uppercase;
+        }
+
+        /* --- 6. SIDEBARS, MODALS & INPUTS --- */
+        .sidebar {
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .menu-open,
+        .cart-open,
+        .details-open {
+            transform: translateX(0) !important;
+        }
+
+        #loginModal {
+            background-color: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(5px);
+        }
+
+        #loginModal>div {
+            background-color: #0a0a0a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .login-input-premium {
+            width: 100%;
+            background: transparent !important;
+            color: white !important;
+            padding: 12px 0;
+            border: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            transition: all 0.4s ease;
+        }
+
+        .login-input-premium:focus {
+            outline: none;
+            border-bottom-color: #f59e0b;
+            padding-left: 8px;
+        }
+
+        /* --- 7. MOBILE MENU --- */
+        #mobileMenu {
+            background: rgba(10, 10, 10, 0.98);
+            backdrop-filter: blur(15px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2.5rem;
+            transition: transform 0.7s cubic-bezier(0.85, 0, 0.15, 1);
+        }
+
+        #mobileMenu a {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 2.5rem;
+            color: white;
+            text-transform: capitalize;
+            letter-spacing: 0.1em;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        #mobileMenu a:hover {
+            color: #f59e0b;
+            transform: scale(1.1);
+        }
+
+        #mobileMenu .menu-footer {
+            position: absolute;
+            bottom: 40px;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5em;
+            color: #444;
+        }
+
+        /* --- 8. FOOTER & UTILITIES --- */
+        .footer-link {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            color: #9ca3af;
+            transition: all 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: #f59e0b;
+            transform: translateX(4px);
+        }
+
+        #backToTopBtn {
+            position: fixed;
+            left: 50%;
+            bottom: 28px;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 99;
+        }
+
+        #backToTopBtn.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #whatsapp-chat {
+            position: fixed;
+            right: 24px;
+            bottom: 24px;
+            background: #111;
+            z-index: 99;
+        }
+
+        #totalPrice {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            color: #f59e0b;
+        }
+
+        .nav-icon span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: #f59e0b;
+            margin: 5px 0;
+            transition: 0.4s;
+        }
+
+        .open .line1 {
+            transform: rotate(-45deg) translate(-5px, 5px);
+        }
+
+        .open .line2 {
+            opacity: 0;
+        }
+
+        .open .line3 {
+            transform: rotate(45deg) translate(-5px, -5px);
+        }
+
+        /* ===== Testimonials Dots ===== */
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #444;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+.dot:hover {
+    background: #f59e0b;
+}
+
+.active-dot {
+    background: #f59e0b;
+    box-shadow: 0 0 8px rgba(245,158,11,0.6);
+}
+
+/* Accordion */
+.accordion-btn {
+    width: 100%;
+    background: #111;
+    color: #f59e0b;
+    text-align: left;
+    padding: 12px 16px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    border: 1px solid #f59e0b;
+    cursor: pointer;
+    margin-bottom: 4px;
+    transition: all 0.3s ease;
+}
+
+.accordion-btn:hover {
+    background: #f59e0b;
+    color: black;
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    border-left: 1px solid #f59e0b;
+    border-right: 1px solid #f59e0b;
+    border-bottom: 1px solid #f59e0b;
+    padding: 0 16px;
+}
+

@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Closet | Premium Luxury Shop</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Font Links -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+            /* --- 1. FONTS & THEME --- */
+        h1,
+        h2,
+        h3,
+        .serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #0a0a0a;
+            color: white;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* --- 2. NAVIGATION & CIRCULAR BUTTONS --- */
+        .login-btn-premium,
+        .cart-btn-premium,
+        .social-icon-box,
+        #backToTopBtn,
+        #whatsapp-chat {
+            width: 44px;
+            height: 44px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: transparent;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            color: #f59e0b;
+        }
+
+        /*  ==Brand Logo=== */
+.brand-logo {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 700;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    background: linear-gradient(to right, #fde68a, #f59e0b, #fde68a);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+
+/* Buttons */
+.login-btn-premium:hover,
+.cart-btn-premium:hover,
+.social-icon-box:hover,
+#backToTopBtn:hover,
+ #whatsapp-chat:hover {
+        border-color: #f59e0b;
+         transform: translateY(-2px);
+        box-shadow: 0 0 15px rgba(245, 158, 11, 0.3);
+}
+
+        .cart-badge-premium {
+            position: absolute;
+            top: -1px;
+            right: -1px;
+            background: #f59e0b;
+            color: black;
+            font-size: 8px;
+            font-weight: 800;
+            width: 16px;
+            height: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 2px solid #0a0a0a;
+        }
+
+        /* --- 3. RECTANGULAR ACTION BUTTONS --- */
+        .hero-btn-premium,
+        .newsletter-btn-premium,
+        .detail-action-btn,
+        .checkout-btn-premium,
+        .login-submit-btn {
+            display: inline-block;
+            border: 1px solid #f59e0b;
+            background: #f59e0b;
+            color: black;
+            text-transform: uppercase;
+            font-weight: 700;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .hero-btn-premium {
+            background: transparent;
+            color: #f59e0b;
+            padding: 18px 48px;
+            font-size: 11px;
+            letter-spacing: 0.5em;
+        }
+
+        .newsletter-btn-premium {
+            padding: 14px 40px;
+            font-size: 10px;
+            letter-spacing: 0.3em;
+        }
+
+        .detail-action-btn {
+            width: 100%;
+            padding: 16px;
+            font-size: 11px;
+            letter-spacing: 0.3em;
+        }
+
+        .checkout-btn-premium {
+            width: 100%;
+            padding: 18px;
+            font-size: 11px;
+            letter-spacing: 0.4em;
+            margin-top: 10px;
+        }
+
+        .login-submit-btn {
+            width: 100%;
+            padding: 16px;
+            font-size: 10px;
+            letter-spacing: 0.4em;
+        }
+
+        .hero-btn-premium:hover,
+        .newsletter-btn-premium:hover,
+        .detail-action-btn:hover,
+        .checkout-btn-premium:hover,
+        .login-submit-btn:hover {
+            background: transparent;
+            color: #f59e0b;
+            box-shadow: 0 0 25px rgba(245, 158, 11, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* --- 4. PRODUCT CARDS & VIEW DETAILS --- */
+        
+.product-card img {
+    filter: none; 
+    transition: transform 0.5s ease; /* hover zoom smooth */
+}
+
+/* Hover effect for zoom only */
+.product-card:hover img {
+    transform: scale(1.05); /* small zoom on hover */
+}
+
+
+        .star-rating {
+            color: #f59e0b;
+            letter-spacing: 2px;
+            font-size: 10px;
+        }
+
+        .view-details-btn {
+            display: inline-block;
+            border: 1px solid #f59e0b;
+            background: transparent;
+            color: #f59e0b;
+            padding: 14px 32px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5em;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            backdrop-filter: blur(2px);
+        }
+
+        .size-btn {
+            width: 44px;
+            height: 44px;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            background: transparent;
+            color: white;
+            font-size: 10px;
+            text-transform: uppercase;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .size-btn:hover,
+        .size-btn.active {
+            background: #f59e0b;
+            color: black;
+            border-color: #f59e0b;
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
+        }
+
+        /* --- 5. SHOP FILTERS & DROPDOWN --- */
+        .filter-input-premium {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 10px 20px;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            outline: none;
+        }
+
+        .filter-input-premium:focus,
+        .filter-input-premium:hover {
+            border-color: #f59e0b;
+            background: rgba(245, 158, 11, 0.05);
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.2);
+        }
+
+        #sortOrder {
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org' width='12' height='12' fill='%23f59e0b' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            padding-right: 40px;
+        }
+
+        #sortOrder option {
+            background-color: #0a0a0a;
+            color: #f59e0b;
+            padding: 15px;
+            text-transform: uppercase;
+        }
+
+        /* --- 6. SIDEBARS, MODALS & INPUTS --- */
+        .sidebar {
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .menu-open,
+        .cart-open,
+        .details-open {
+            transform: translateX(0) !important;
+        }
+
+        #loginModal {
+            background-color: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(5px);
+        }
+
+        #loginModal>div {
+            background-color: #0a0a0a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .login-input-premium {
+            width: 100%;
+            background: transparent !important;
+            color: white !important;
+            padding: 12px 0;
+            border: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            transition: all 0.4s ease;
+        }
+
+        .login-input-premium:focus {
+            outline: none;
+            border-bottom-color: #f59e0b;
+            padding-left: 8px;
+        }
+
+        /* --- 7. MOBILE MENU --- */
+        #mobileMenu {
+            background: rgba(10, 10, 10, 0.98);
+            backdrop-filter: blur(15px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2.5rem;
+            transition: transform 0.7s cubic-bezier(0.85, 0, 0.15, 1);
+        }
+
+        #mobileMenu a {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 2.5rem;
+            color: white;
+            text-transform: capitalize;
+            letter-spacing: 0.1em;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        #mobileMenu a:hover {
+            color: #f59e0b;
+            transform: scale(1.1);
+        }
+
+        #mobileMenu .menu-footer {
+            position: absolute;
+            bottom: 40px;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5em;
+            color: #444;
+        }
+
+        /* --- 8. FOOTER & UTILITIES --- */
+        .footer-link {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            color: #9ca3af;
+            transition: all 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: #f59e0b;
+            transform: translateX(4px);
+        }
+
+        #backToTopBtn {
+            position: fixed;
+            left: 50%;
+            bottom: 28px;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 99;
+        }
+
+        #backToTopBtn.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #whatsapp-chat {
+            position: fixed;
+            right: 24px;
+            bottom: 24px;
+            background: #111;
+            z-index: 99;
+        }
+
+        #totalPrice {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            color: #f59e0b;
+        }
+
+        .nav-icon span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: #f59e0b;
+            margin: 5px 0;
+            transition: 0.4s;
+        }
+
+        .open .line1 {
+            transform: rotate(-45deg) translate(-5px, 5px);
+        }
+
+        .open .line2 {
+            opacity: 0;
+        }
+
+        .open .line3 {
+            transform: rotate(45deg) translate(-5px, -5px);
+        }
+
+        /* ===== Testimonials Dots ===== */
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #444;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+.dot:hover {
+    background: #f59e0b;
+}
+
+.active-dot {
+    background: #f59e0b;
+    box-shadow: 0 0 8px rgba(245,158,11,0.6);
+}
+
+/* Accordion */
+.accordion-btn {
+    width: 100%;
+    background: #111;
+    color: #f59e0b;
+    text-align: left;
+    padding: 12px 16px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    border: 1px solid #f59e0b;
+    cursor: pointer;
+    margin-bottom: 4px;
+    transition: all 0.3s ease;
+}
+
+.accordion-btn:hover {
+    background: #f59e0b;
+    color: black;
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    border-left: 1px solid #f59e0b;
+    border-right: 1px solid #f59e0b;
+    border-bottom: 1px solid #f59e0b;
+    padding: 0 16px;
+}
+
+
+</style>
+</head>
+
+<body class="overflow-x-hidden">
+
+    <!-- PRODUCT DETAILS OVERLAY (Next Page Feel) -->
+    <div id="productDetailView" class="sidebar fixed inset-0 z-[150] bg-[#0a0a0a] translate-x-full overflow-y-auto">
+        <div class="max-w-7xl mx-auto px-6 py-10">
+            <button onclick="closeDetails()"
+                class="mb-10 text-amber-500 uppercase tracking-widest text-xs flex items-center">← Back to
+                Collection</button>
+            <div class="grid md:grid-cols-2 gap-16">
+                <div class="aspect-[3/4] bg-[#111] overflow-hidden">
+                    <img id="detailImg" src="" class="w-full h-full object-cover">
+                </div>
+                <div class="flex flex-col justify-center">
+                    <p id="detailCat" class="text-amber-500 uppercase tracking-[0.3em] text-[10px] mb-4"></p>
+                    <h2 id="detailName" class="text-5xl md:text-7xl italic mb-6"></h2>
+                    <div id="detailStars" class="star-rating mb-6"></div>
+                    <p id="detailPrice" class="text-2xl mb-8 font-light"></p>
+
+                    <!-- Size Selection -->
+
+                    <div class="mb-8">
+                        <p class="text-[10px] uppercase tracking-widest mb-4 text-gray-500">Select Size</p>
+                        <div class="flex gap-4">
+                            <!-- We use a custom class 'size-btn' to handle the amber/black styling -->
+                            <button onclick="selectSize('S', this)" class="size-btn">S</button>
+                            <button onclick="selectSize('M', this)" class="size-btn">M</button>
+                            <button onclick="selectSize('L', this)" class="size-btn">L</button>
+                            <button onclick="selectSize('XL', this)" class="size-btn">XL</button>
+                        </div>
+                    </div>
+
+                    <!-- Add to Closet Button -->
+                    <button id="detailAddBtn" class="detail-action-btn">
+                        Add to Closet
+                    </button>
+                    <!-- PRODUCT DETAILS ACCORDION -->
+<div class="mt-8">
+    <div class="accordion">
+        <button class="accordion-btn">Product Description</button>
+        <div class="accordion-content">
+            <p id="detailDesc" class="text-gray-400 text-sm leading-relaxed">
+                <!-- JS se content aayega -->
+            </p>
+        </div>
+    </div>
+
+ <!-- RELATED PRODUCTS SECTION -->
+<div class="mt-20 border-t border-white/5 pt-16">
+    <div class="flex items-center justify-between mb-10">
+        <h3 class="text-2xl md:text-3xl italic serif text-white">Complete The Look</h3>
+        <span class="text-[10px] text-amber-500 uppercase tracking-[0.3em]">Similar Pieces</span>
+    </div>
+    <!-- Yahan JS cards inject karega -->
+    <div id="relatedGrid" class="grid grid-cols-2 md:grid-cols-4 gap-8"></div>
+</div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- MOBILE MENU -->
+    <div id="mobileMenu" class="sidebar fixed inset-0 z-[60] translate-x-full lg:hidden">
+        <a href="#" onclick="toggleMenu()">Home</a>
+        <a href="#shop" onclick="toggleMenu()">Collection</a>
+        <a href="#reviews" onclick="toggleMenu()">Reviews</a>
+        <a href="#footer" onclick="toggleMenu()">Contact</a>
+
+        <div class="menu-footer">Aura Closet Luxury</div>
+    </div>
+
+
+<!-- NAVIGATION -->
+<nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-500 border-b border-white/5 bg-black/60 backdrop-blur-xl">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        
+        <!-- Mobile Menu Toggle (Left on mobile) -->
+        <button id="menuBtn" onclick="toggleMenu()" class="lg:hidden z-[70] nav-icon">
+            <span class="line1"></span>
+            <span class="line2"></span>
+            <span class="line3"></span>
+        </button>
+
+        <!-- Logo (Centered on mobile, Left on Desktop) -->
+        <a href="#" class="brand-logo">
+    Aura Closet
+</a>
+
+
+        <!-- Desktop Navigation Links -->
+        <div class="hidden lg:flex space-x-12 text-[10px] uppercase tracking-[0.3em] font-bold text-gray-300">
+            <button onclick="filterCategory('all')" class="hover:text-amber-500 transition-colors duration-300">Collections</button>
+            <button onclick="filterCategory('Formal')" class="hover:text-amber-500 transition-colors duration-300">Formal</button>
+            <button onclick="filterCategory('Casual')" class="hover:text-amber-500 transition-colors duration-300">Casual</button>
+            <button onclick="filterCategory('Winter')" class="hover:text-amber-500 transition-colors duration-300">Winter</button>
+            <button onclick="filterCategory('Summer')" class="hover:text-amber-500 transition-colors duration-300">Summer</button>
+        </div>
+                <!-- Navigation Icons Container -->
+                <div class="flex items-center space-x-2">
+                    <!-- User/Login Icon -->
+                    <button onclick="openLoginModal()" class="login-btn-premium group" title="Login">
+                        <i data-lucide="user"
+                            class="w-5 h-5 text-amber-500 transition-transform group-hover:scale-110"></i>
+                    </button>
+
+                    <!-- Cart Icon -->
+                    <button onclick="toggleCart()" class="cart-btn-premium relative group" title="Open Closet">
+                        <span class="text-lg">👜</span>
+                        <span id="cartCount" class="cart-badge-premium">0</span>
+                    </button>
+                </div>
+            </nav>
+
+    <!-- LOGIN MODAL -->
+    <div id="loginModal" class="fixed inset-0 bg-black/90 hidden items-center justify-center z-[200] backdrop-blur-sm">
+        <div class="bg-[#0a0a0a] p-10 border border-white/10 w-full max-w-sm relative">
+            <!-- Close Button -->
+            <button onclick="closeLoginModal()"
+                class="absolute top-4 right-4 text-white/50 hover:text-amber-500 transition-colors text-2xl">&times;</button>
+
+            <h2 class="serif text-3xl italic text-amber-500 mb-8 text-center">Welcome Back</h2>
+
+            <form onsubmit="event.preventDefault(); showToast('Access Granted'); closeLoginModal()">
+                <div class="mb-6">
+                    <label class="block text-[9px] mb-2 uppercase tracking-[0.3em] text-gray-500">Email Address</label>
+                    <input type="email" required placeholder="name@luxury.com" class="login-input-premium">
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-[9px] mb-2 uppercase tracking-[0.3em] text-gray-500">Secret
+                        Password</label>
+                    <input type="password" required placeholder="••••••••" class="login-input-premium">
+                </div>
+
+                <div class="flex justify-between items-center mb-8 text-[9px] uppercase tracking-widest">
+                    <label class="flex items-center gap-2 cursor-pointer group">
+                        <input type="checkbox" class="accent-amber-500">
+                        <span class="text-gray-500 group-hover:text-white transition">Remember</span>
+                    </label>
+                    <a href="#" class="text-amber-500 hover:text-white transition">Forgot?</a>
+                </div>
+
+                <!-- Button matched to Shop Collection Style -->
+                <button type="submit" class="login-submit-btn">
+                    Authorize Login
+                </button>
+            </form>
+
+            <p class="mt-8 text-[9px] uppercase tracking-[0.2em] text-gray-600 text-center">
+                New to the house? <a href="#" class="text-amber-500 hover:underline">Create Account</a>
+            </p>
+        </div>
+    </div>
+
+
+    <!-- HERO -->
+    <section class="h-screen flex items-center justify-center text-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com')] bg-cover bg-center opacity-30"></div>
+        <div class="relative z-10 px-6">
+            <p class="text-amber-500 tracking-[0.8em] uppercase text-xs mb-4">Luxury Boutique</p>
+            <h1 class="text-5xl md:text-8xl italic mb-8">The Aura of Style</h1>
+
+            <a href="#shop" class="hero-btn-premium">
+                Shop Collection
+            </a>
+
+        </div>
+    </section>
+
+    <!-- SHOP FILTERS -->
+    <section class="pt-32 px-6 max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-6 border-b border-white/10 pb-8">
+            <h2 id="catTitle" class="serif text-3xl italic tracking-wide">Our Collection</h2>
+            <div class="flex flex-wrap justify-center gap-4">
+                <!-- Search Bar -->
+                <input type="text" id="searchBar" onkeyup="searchProducts()" placeholder="Search items..."
+                    class="filter-input-premium">
+
+                <!-- Sort Dropdown -->
+                <select id="sortOrder" onchange="sortItems()" class="filter-input-premium cursor-pointer">
+                    <option value="default">Sort By</option>
+                    <option value="low">Price: Low to High</option>
+                    <option value="high">Price: High to Low</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- SHOP SECTION -->
+    <main id="shop" class="max-w-7xl mx-auto px-6 py-24">
+        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12"></div>
+    </main>
+
+<section id="reviews" class="bg-[#0a0a0a] py-24 px-6 text-center overflow-hidden">
+    <h2 class="text-4xl italic mb-12">Client Experiences</h2>
+
+    <div class="relative max-w-4xl mx-auto overflow-hidden">
+        <div id="testimonialCarousel" class="flex transition-transform duration-700 ease-in-out">
+            
+            <div class="min-w-full px-6">
+                <p class="italic text-gray-400 mb-6">
+                    “The fit of the Midnight Tuxedo is unparalleled. Truly bespoke quality.”
+                </p>
+                <p class="text-amber-500 uppercase tracking-widest text-xs">— Ahmed K.</p>
+            </div>
+
+            <div class="min-w-full px-6">
+                <p class="italic text-gray-400 mb-6">
+                    “Fast delivery to Lahore and the packaging was absolutely beautiful.”
+                </p>
+                <p class="text-amber-500 uppercase tracking-widest text-xs">— Sarah M.</p>
+            </div>
+
+            <div class="min-w-full px-6">
+                <p class="italic text-gray-400 mb-6">
+                    “Aura Closet is now my go-to for all formal events. 10/10 service.”
+                </p>
+                <p class="text-amber-500 uppercase tracking-widest text-xs">— Omar J.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Dots -->
+    <div id="dots" class="flex justify-center gap-3 mt-10">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </div>
+</section>
+
+
+    <!-- NEWSLETTER -->
+    <section class="py-24 px-6 text-center border-t border-white/5">
+        <div class="max-w-xl mx-auto">
+            <h2 class="serif text-4xl italic mb-4">Join the Inner Circle</h2>
+            <p class="text-[10px] text-gray-500 mb-10 uppercase tracking-[0.4em]">Receive early access to new drops</p>
+
+            <form class="flex flex-col sm:flex-row gap-4"
+                onsubmit="event.preventDefault(); showToast('Welcome to the Inner Circle!');">
+                <input type="email" required placeholder="EMAIL ADDRESS"
+                    class="flex-1 bg-transparent border-b border-white/10 py-3 text-[10px] uppercase tracking-widest focus:outline-none focus:border-amber-500 transition-colors placeholder:text-gray-700">
+
+                <button type="submit" class="newsletter-btn-premium">
+                    Subscribe
+                </button>
+            </form>
+        </div>
+    </section>
+
+
+    <!-- FOOTER SECTION -->
+    <footer id="footer" class="bg-[#050505] border-t border-white/5 pt-24 pb-12 px-6">
+        <div class="max-w-7xl mx-auto">
+
+            <!-- FOOTER GRID -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
+
+                <!-- ABOUT -->
+                <div class="flex flex-col">
+                    <h4 class="text-amber-500 uppercase tracking-[0.4em] text-[10px] mb-8 font-bold">
+                        The House
+                    </h4>
+                    
+                    <!-- Brand Logo -->
+                    <a href="#" class="brand-logo mb-6" > Aura Closet
+                    </a>
+
+
+                    <p class="text-gray-500 text-sm leading-relaxed italic">
+                        "Luxury is not about being noticed, it is about being remembered."
+                        <br><br>
+                        Crafted for the elite, Aura Closet brings together timeless silhouettes and premium
+                        craftsmanship.
+                    </p>
+                </div>
+
+                <!-- CLIENT CARE -->
+                <div class="flex flex-col">
+                    <h4 class="text-amber-500 uppercase tracking-[0.4em] text-[10px] mb-8 font-bold">
+                        Client Care
+                    </h4>
+
+                    <nav class="flex flex-col space-y-5">
+                        <a href="#shop" class="footer-link">View Collection</a>
+                        <a href="#" class="footer-link">Home</a>
+                        <a href="#" class="footer-link">Sizing Guide</a>
+                        <a href="#" class="footer-link">Returns & Exchange</a>
+                    </nav>
+                </div>
+
+                <!-- CONTACT US -->
+                <div class="flex flex-col">
+                    <h4 class="text-amber-500 uppercase tracking-[0.4em] text-[10px] mb-8 font-bold">
+                        Contact Us
+                    </h4>
+
+                    <div class="space-y-5 text-gray-400 text-[11px] tracking-wider">
+
+                        <div class="flex items-start gap-3">
+                            <i data-lucide="map-pin" class="w-4 h-4 text-amber-500 mt-0.5"></i>
+                            <p>
+                                DHA Phase 6, Karachi<br>
+                                Pakistan
+                            </p>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="phone" class="w-4 h-4 text-amber-500"></i>
+                            <a href="tel:+923001234567" class="hover:text-amber-500 transition">
+                                +92 000 1234567
+                            </a>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="mail" class="w-4 h-4 text-amber-500"></i>
+                            <a href="mailto:info@auracloset.com" class="hover:text-amber-500 transition">
+                                info@auracloset.com
+                            </a>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="clock" class="w-4 h-4 text-amber-500"></i>
+                            <p>Mon – Sat: 11am – 9pm</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- SOCIAL -->
+                <div class="space-y-6">
+                    <h4 class="text-amber-500 uppercase tracking-[0.4em] text-[10px] font-bold">
+                        Connect
+                    </h4>
+
+                    <p class="text-gray-500 text-[10px] uppercase tracking-widest">
+                        Follow our world of luxury
+                    </p>
+
+                    <div class="flex gap-3">
+                        <a href="https://instagram.com" target="_blank" class="social-icon-box">
+                            <i data-lucide="instagram" class="w-5 h-5 text-amber-500"></i>
+                        </a>
+
+                        <a href="https://tiktok.com" target="_blank" class="social-icon-box">
+                            <i data-lucide="music-2" class="w-5 h-5 text-amber-500"></i>
+                        </a>
+
+                        <a href="https://twitter.com" target="_blank" class="social-icon-box">
+                            <i data-lucide="twitter" class="w-5 h-5 text-amber-500"></i>
+                        </a>
+
+                        <a href="https://facebook.com" target="_blank" class="social-icon-box">
+                            <i data-lucide="facebook" class="w-5 h-5 text-amber-500"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+             <!-- COPYRIGHT BAR -->
+        <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center text-center">
+            <p class="text-[9px] uppercase tracking-[0.5em] text-gray-600 mb-4 md:mb-0">
+                © <span id="year"></span> AURA CLOSET. Handcrafted Luxury.
+            </p>
+            <div class="flex space-x-8">
+                <a href="#" class="footer-link text-[9px] text-gray-600 lowercase tracking-widest">Privacy</a>
+                <a href="#" class="footer-link text-[9px] text-gray-600 lowercase tracking-widest">Terms</a>
+                <a href="#" class="footer-link text-[9px] text-gray-600 lowercase tracking-widest">Cookies</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- BACK TO TOP BUTTON -->
+    <button id="backToTopBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="Go to top">
+        ↑
+    </button>
+
+    <!-- CART SIDEBAR -->
+    <div id="cartSidebar"
+        class="sidebar fixed top-0 right-0 h-full w-full max-w-sm bg-[#0a0a0a] z-[200] translate-x-full p-8 border-l border-white/10 flex flex-col">
+        <div class="flex justify-between items-center mb-10">
+            <h2 class="serif text-2xl italic">Your Closet</h2><button onclick="toggleCart()"
+                class="text-3xl">&times;</button>
+        </div>
+        <div id="cartItems" class="flex-1 space-y-6 overflow-y-auto"></div>
+        <div class="border-t border-white/10 pt-6">
+            <div class="flex justify-between mb-4"><span class="text-xs text-gray-500">Total</span><span id="totalPrice"
+                    class="text-amber-500">PKR 0</span></div>
+            <!-- Updated Checkout Button in Cart Sidebar -->
+            <button onclick="checkout()" class="checkout-btn-premium">
+                Complete Purchase
+            </button>
+
+        </div>
+    </div>
+
+
+    <!-- WhatsApp as Social Icon -->
+    <a href="https://wa.me/923001234567" target="_blank" id="whatsapp-chat" aria-label="Chat on WhatsApp"
+        title="Chat us on WhatsApp">
+
+        <i data-lucide="message-circle" class="text-amber-500"></i>
+    </a>
+
+<!-- Icons Library  -->
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+ <script>
+    
+ 
+ // PRODUCTS DATA
+        const products = [
+            // === WINTER ===
+            { id: 1, name: "Khaddar Printed", cat: "Winter", price: 5593, rating: 5, img: "winter8.webp", desc: "<strong>KHADDAR PRINTED SHIRT</strong> <br><strong>PLAIN CHIFFON DUPATTA WITH LACE</strong> <br><strong>KHADDAR PRINTED TROUSERS</strong>",
+        care: ["Dry clean only", "Do not bleach", "Iron at low temperature"] },
+            { id: 2, name: "Dhanak 3PC", cat: "Winter", price: 8775, rating: 4, img: "winter6.webp", desc: "<strong>DYED EMBROIDERED DHANAK SHIRT</strong> <br><strong>DYED DHANAK TROUSER</strong> <br><strong>PASHMINA SHAW</strong>",
+        care: ["Dry clean only", "Do not bleach", "Iron at low temperature"] },
+            { id: 3, name: "PC Printed Suit", cat: "Winter", price: 4796, rating: 4, img: "winter7.webp", desc: "<strong>PRINTED BLENDED RAW SILK SHIRT</strong> <br><strong>PRINTED BLENDED  RAW SILK TROUSER</strong> <br><strong>PRINTED MONAR DUPATTA</strong>",
+        care: ["Dry clean only", "Do not bleach", "Iron at low temperature"] },
+            { id: 4, name: "Dhanak 3PC", cat: "Winter", price: 8775, rating: 4, img: "winter5.webp", desc: "<strong>DYED EMBROIDERED DHANAK SHIRT</strong>  <br><strong>DYED DHANAK TROUSER</strong> <br><strong>PASHMINA SHAWL</strong> ",
+        care: ["Dry clean only", "Do not bleach", "Iron at low temperature"] },
+            { id: 5, name: "Sonnet", cat: "Winter", price: 8032, rating: 4, img: "winter4.webp", desc:"Sonnet is a poetic ode to winter, crafted in premium Italian wool in a beautiful cocoa hue. Delicate embroidery graces the front and sleeves, complemented by a jacquard shawl in deep beautiful patterns. <br><strong>Fabric Italian wool</strong>  <br><strong>Embroidered front</strong> <br><strong>Embroidered sleeves</strong> <br><strong>Plain dyed back.</strong>",
+        care: ["Dry clean only", "Do not bleach", "Iron at low temperature"] },
+            { id: 6, name: "Liana", cat: "Winter", price: 8898, rating: 4, img: "winter3.webp", desc: "Gentle and graceful, Liana is a canvas of soft Karandi, adorned with delicate floral embroidery in shades of blush and lavender. The subtle details on the shirt and trousers exude timeless femininity, making it a versatile piece for cozy afternoons or cherished winter gatherings.<br><strong>Shirt</strong>: Printed Embroidered Slub Karandi Front</strong> <br><strong>Printed Back</strong> <br><strong>Printed Sleeves</strong> <br><strong>Organza Embroidered Patch</strong> <br><strong>Trousers</strong>: Printed Slub Karandi <br><strong>Dupatta</strong>: Printed Chiffon",
+        care: ["Dry clean only", "Do not bleach", "Iron at low temperature"] },
+            { id: 7, name: "Nysa", cat: "Winter", price: 7563, rating: 4, img: "winter2.webp", desc: "Bold yet graceful, Nysa transforms winter elegance with its striking floral story. Set against a serene Karandi base, the shirt and trousers bloom with vibrant embroidery, reminiscent of a garden alive with color even in the chill of the season.<br><strong>Shirt</strong> :Printed Embroidered Slub Karandi Front</strong> <br><strong>Printed Back</strong> <br><strong>Printed Sleeves</strong> <br><strong>Embroidered Daman Patch</strong> <br><strong>Trousers</strong> : Printed Slub Karandi <br><strong>Dupatta</strong> :Printed Chiffon",
+        care: ["Dry clean only", "Do not bleach", "Iron at low temperature"] },
+            { id: 8, name: "Fia", cat: "Winter", price: 8012, rating: 4, img: "winter1.webp", desc: "Fia stands out in beautiful purple, crafted in premium Italian wool with exquisite embroidery on the neckline, sleeves, and hem. A beatiful jacquard shawl enhances its regal presence, making it a true symbol of winter luxury. <br><strong>Fabric Italian wool</strong>  <br><strong>Embroidered front</strong> <br><strong>Embroidered sleeves</strong> <br><strong>Embroidered Organza Daman & Sleeves Patch</strong> <br><strong>Plain dyed back</strong>",
+        care: ["Dry clean only", "Do not bleach", "Iron at low temperature"] },
+
+            // === CASUAL ===
+            { id: 9, name: "2 Piece Embroidered Suit", cat: "Casual", price: 6990, rating: 5, img: "new1.webp", desc: "A grey 2 piece suit with blue embroidery, cool toned contrast with neat detailing for a fresh, coordinated look.<br><strong>Fabric</strong>: Blended  <br><strong>Ready to Wear</strong>",
+        care: ["Dry clean only", "Do not bleach", "Iron at low temperature"] },
+            { id: 10, name: "2 Piece Solid Suit", cat: "Casual", price:  5990, rating: 5, img: "new2.webp", desc: "A black basic cord featuring a button down shirt, clean, coordinated, and easy to style for everyday wear. <br><strong>Fabric</strong>: Blended  <br><strong>Ready to Wear</strong>",
+        care: ["Dry clean only", "Do not bleach", "Iron at low temperature"] },
+            { id: 11, name: "Silk Wrap", cat: "Casual", price: 15000, rating: 5, img: "new3.webp", desc: "A pink 2 piece cord set dotted in black, relaxed fit with subtle detailing for a lively, everyday ensemble. <br><strong>Fabric</strong>: Polka Dots <br><strong>Ready to Wear</strong>",
+        care: ["Dry clean only", "Do not bleach", "Iron at low temperature"] },
+            { id: 12, name: "3 Piece Embroidered Suit", cat: "Casual", price:  12990, rating: 5, img: "new4.webp", desc: "A purple embroidered suit paired with a shawl, rich tones and detailed accents create a vibrant, coordinated ensemble.",
+        care: ["Dry clean only", "Do not bleach", "Iron at low temperature"] },
+            { id: 13, name: "2 Piece Embroidered Linen Suit", cat: "Casual", price: 6990, rating: 5, img: "new5.webp", desc: "A maroon embroidered 2 piece linen dress for women, bold, vibrant, and designed to make a lively style statement. <br><strong>Fabric</strong>: Linen  <br><strong>Ready to Wear</strong>",
+        care: ["Dry clean only", "Do not bleach", "Iron at low temperature"] },
+            { id: 14, name: "3 Piece Embroidered Linen Suit", cat: "Casual", price: 11490, rating: 5, img: "new6.webp", desc: "Elegant brown linen 3-piece suit featuring refined black embroidery. Breathable fabric with a tailored fit, perfect for get togethers and formal occasions. <br><strong>Fabric</strong>: Linen <br><strong>Ready to Wear</strong>",
+        care: ["Dry clean only", "Do not bleach", "Iron at low temperature"] },
+            { id: 15, name: "2 Piece Solid Suit", cat: "Casual", price: 5990, rating: 5, img: "new7.webp", desc: "A classic navy blue solid 2 piece set designed for effortless elegance. Perfectly coordinated for a polished, versatile look.  <br><strong>Fabric</strong>: Blended  <br><strong>Ready to Wear</strong>",
+        care: ["Dry clean only", "Do not bleach", "Iron at low temperature"] },
+            { id: 16, name: "3 Piece Embroidered Dobby Suit", cat: "Casual", price: 9490, rating: 5, img: "new8.webp", desc: "A graceful green 3-piece set featuring an intricately embroidered shirt paired with a printed dupatta, Perfectly balanced for a refined look. <br><strong>Fabric</strong>: Dobby <br><strong>Ready to Wear</strong>.",
+        care: ["Dry clean only", "Do not bleach", "Iron at low temperature"] },
+            
+            // === summer ===
+            { id: 17, name: "2PC Printed Cotton", cat: "Summer", price: 4170, rating: 4, img: "summer1.webp", desc: "<strong>DIGITAL PRINTED COTTON LAWN SHIRT</strong> <br><strong>ORGANZA EMBROIDERED PATCH</strong> <br><strong>DIGITAL PRINTED COTTON LAWN TROUSERS</strong>",
+              care: ["Dry clean only", "Do not bleach", "Iron at low temperature"] },
+            { id: 18, name: "Printed Cotton Lawn", cat: "Summer", price: 5370., rating: 4, img: "summer2.jpg",desc: "<strong>DIGITAL PRINTED COTTON LAWN SHIRT</strong> <br><strong>ORGANZA EMBROIDERED PATCH</strong> <br><strong>DIGITAL PRINTED COTTON LAWN TROUSERS</strong>",
+        care: ["Dry clean only", "Do not bleach", "Iron at low temperature"] },
+            { id: 19, name: "2PC Cotton", cat: "Summer", price: 7470, rating: 4, img: "summer3.webp", desc: "<strong>100% COTTON CAMBRIC</strong> <br><strong>DYED EMBROIDERED COTTON SHIRT</strong> <br><strong>DYED COTTON TROUSERS WITH EMBROIDERED</strong> ",
+        care: ["Dry clean only", "Do not bleach", "Iron at low temperature"] },
+            { id: 20, name: "Dyed Embroidered Cotton ", cat: "Summer", price: 42000, rating: 4, img: "summer4.webp", desc: "<strong>100% COTTON CAMBRIC</strong> <br><strong>DYED EMBROIDERED  COTTON SHIRT</strong> <br><strong>DYED EMBROIDERED COTTON FARSHI SHALWAR</strong>",
+        care: ["Dry clean only", "Do not bleach", "Iron at low temperature"] },
+            { id: 21, name: "3PC Printed Silk Viscose", cat: "Summer", price: 8225, rating: 4, img: "summer5.webp", desc: "<strong>PRINTED SILK VISCOSE SHIRT WITH EMBROIDERED PATCH</strong> <br><strong>PRINTED SILK VISCOSE TROUSER</strong> <br><strong>PRINTED SILK DUPATTA WITH LACE</strong>",
+        care: ["Dry clean only", "Do not bleach", "Iron at low temperature"] },
+            { id: 22, name: "3PC Printed Lawn", cat: "Summer", price: 6990, rating: 4, img: "summer6.webp", desc: "<strong>DIGITAL PRINTED LAWN SHIRT</strong> <br><strong>DIGITAL PRINTED LAWN TROUSERS</strong> <br><strong>DIGITAL PRINTED LAWN DUPATTA</strong>",
+        care: ["Dry clean only", "Do not bleach", "Iron at low temperature"] },
+            { id: 23, name: "3PC Embroidered Suit ", cat: "Summer", price: 6300, rating: 4, img: "summer7.webp", desc: "<strong>PRINTED SILK VISCOSE SHIRT WITH EMBROIDERED PATCH</strong> <br><strong>PRINTED VISCOSE TROUSER</strong> <br><strong>PRINTED SILK DUPATTA WITH LACE</strong>",
+        care: ["Dry clean only", "Do not bleach", "Iron at low temperature"] },
+
+            // === FORMAL ===
+            { id: 24, name: "YURA", cat: "Formal", price: 11340, rating: 4, img: "formal1.webp", 
+                desc: "Exuding timeless elegance, this Plum Violet 3-piece pret is a masterpiece in refined craftsmanship. The straight-cut lawn shirt features a rounded hemline with scalloped finishing, paired with a round neckline and slit, adorned with delicate embroidered motifs along the placket. The full-length shirt is enhanced with scalloped edges and graceful floral embroidery, while all-over tonal sprays add subtle charm. Its straight cambric cotton trousers are styled with embroidered scalloped borders at the ankle hem for a chic finish. The look is completed with a net dupatta, beautifully framed with four-sided embroidered scalloped borders, creating a statement of effortless sophistication <br><strong>3 Piece Pret</strong> <br><strong>Shirt Fabric</strong>: Lawn <br><strong>Trouser Fabric</strong>: Cambric Cotton <br><strong>Dupatta Fabric</strong>: Net <br><strong>Color</strong>: Plum Viole",
+        care: ["Dry clean only", "Do not bleach", "Iron at low temperature"] },
+            { id: 25, name: "VAIIRA", cat: "Formal", price: 15900, rating: 4, img: "formal2.webp", 
+                desc: "Step into elegant charm with this 3-Piece Pret in a sophisticated Mauve Orchid hue. The lawn shirt features a round V-neck with delicate pleat detailing, a short silhouette with a round embroidered hem, and loose sleeves accented with scalloped embroidery borders. Paired with a farshi shalwar adorned with embroidered hems and a flowing printed silk dupatta, this ensemble exudes timeless grace with a contemporary flair <br><strong>3 Piece Pret</strong> <br><strong>Shirt Fabric</strong>: Lawn <br><strong>Trouser Fabric</strong>: Cambric Cotton <br><strong>Dupatta Fabric</strong>: Silk Printed <br><strong>Color</strong>: Mauve Orchid.",
+        care: ["Dry clean only", "Do not bleach", "Iron at low temperature"] },
+            { id: 26, name: "SEVARIN", cat: "Formal", price: 16900, rating: 4, img: "formal3.webp", 
+                desc: "Fresh and refined, this Misty Jade 3-Piece Pret captures effortless elegance with a modern silhouette. The lawn A-line long shirt features a four-panel design, a clean round neckline accented with buttons, and a delicate lace finish at the hem, paired with three-quarter sleeves adorned with embroidered hems. Completed with straight-fit cambric cotton trousers with embroidered detailing and a graceful silk printed dupatta, this ensemble is timelessly chic <br><strong>3 Piece Pret</strong> <br><strong>Shirt Fabric</strong>: Lawn <br><strong>Trouser Fabric: Cambric Cotton <br><strong>>Dupatta Fabric</strong>: Silk Printed <br><strong>Color</strong>: Misty Jade",
+        care: ["Dry clean only", "Do not bleach", "Iron at low temperature"] },
+            { id: 27, name: "ZARA", cat: "Formal", price: 89000, rating: 4, img: "formal4.webp", 
+                desc: "Embrace understated luxury with this Grey 3-Piece Pret, crafted in luminous Silver Zari Net for a refined festive look. The short shirt features a graceful boat neckline, fully embroidered with intricate adda work for timeless elegance. Fitted sleeves are richly embroidered and finished with delicate pearl detailing, adding a soft feminine touch. A straight hemline adorned with pearl accents enhances the shirt’s contemporary silhouette. The look is paired with a fully embroidered flared gharara, designed with fluid movement and a wide embroidered hem. Completing the ensemble is a Silver Zari Net dupatta, finished with four-sided scalloped embroidered borders. A perfect fusion of classic craftsmanship and modern sophistication. <br><strong>Shirt Fabric</strong>: Silver Zari Net <br><strong>Garrara Fabric</strong>: Silver Zari Net <br><strong>Dupatta Fabric</strong>: Silver Zari Net <br><strong>Color</strong>: Grey",
+        care: ["Dry clean only", "Do not bleach", "Iron at low temperature"] },
+            { id: 28, name: "OCÉANE", cat: "Formal", price: 17940, rating: 4, img: "formal5.webp", 
+                desc: "Radiate elegance in this Royal Blue 3-piece micro velvet ensemble, a masterpiece of luxury and grace. The shirt features a sweetheart embroidered neckline with an all-over embroidery spray and detailed borders, exuding refined charm. Its fully embroidered sleeves add a touch of opulence, perfectly paired with flared trousers adorned with contrast scalloped embroidered hems. The ensemble is completed with a matching russian silk dupatta, beautifully framed with all-side embroidered borders for a truly regal finish.<br><strong>3 Piece Pret</strong> <br><strong>Shirt Fabric</strong>: Micro Velvet <br><strong>Bottom Fabric</strong>: Korean Silk <br><strong>Dupatta Fabric</strong>: Russian Silk <br><strong>Color</strong>: Royal Blue",
+        care: ["Dry clean only", "Do not bleach", "Iron at low temperature"] },
+            { id: 29, name: "ZAIRAH", cat: "Formal", price: 17940, rating: 4, img: "formal6.webp", 
+                desc: "Radiate timeless elegance in this rich gold 3-piece pret outfit, designed to make a statement at every occasion. The high V-neckline adds structure to a fully embroidered tissue shirt, delicately hand-embellished for an opulent finish. Its long silhouette flows gracefully, paired with quarter sleeves and flared tissue pants that add a touch of drama. The separate lining ensures comfort without compromising the luxurious feel. A matching tissue dupatta, edged with intricate four-sided embroidered borders, completes the look with effortless sophistication <br><strong>3 Piece Pret</strong> <br><strong>Shirt Fabric</strong>: Tissue <br><strong>Trouser Fabric</strong>: Tissue <br><strong>Dupatta Fabric</strong>: Tissue <br><strong>Color</strong>: Rich Gold",
+        care: ["Dry clean only", "Do not bleach", "Iron at low temperature"] },
+         { id: 30, name: "INARAH", cat: "Formal", price: 14500, rating: 4, img: "formal7.jpg", 
+                desc: "Make a statement in this 3-Piece Pret in a rich Dark Purple hue. The lawn shirt features an embroidered boat neckline with a front slit, a short silhouette with lace-accented side slits and hem, and loose sleeves finished with delicate embroidery. Paired with a skinny cambric cotton shalwar and a flowing chiffon dupatta adorned with embroidered four-sided borders, this ensemble blends modern sophistication with timeless elegance.<br><strong>3 Piece Pret</strong> <br><strong>Shirt Fabric</strong>: Lawn <br><strong>Trouser Fabric</strong>: Cambric Cotton <br><strong>Dupatta Fabric</strong>: Chiffon <br><strong>Color</strong>: Dark Purple",
+        care: ["Dry clean only", "Do not bleach", "Iron at low temperature"] },
+        ];
+
+// GLOBAL VARIABLES
+let cart = [];
+let selectedSize = null;
+
+// PRODUCT DETAILS MODAL
+function openDetails(id) {
+    // Placeholder: products array should exist to fetch product data
+    const p = products?.find(prod => prod.id === id);
+    if (!p) return;
+
+    selectedSize = null; // reset size on new product
+
+    // Update main details
+    document.getElementById('detailImg').src = p.img;
+    document.getElementById('detailName').innerText = p.name;
+    document.getElementById('detailCat').innerText = p.cat;
+    document.getElementById('detailPrice').innerText = `PKR ${p.price.toLocaleString()}`;
+    document.getElementById('detailStars').innerText = '★'.repeat(p.rating) + '☆'.repeat(5 - p.rating);
+    document.getElementById('detailDesc').innerHTML = p.desc;
+    document.getElementById('detailCare').innerHTML = p.care
+        ? p.care.map(item => `<li>${item}</li>`).join('') : 'N/A';
+
+    // Related products
+    const relatedGrid = document.getElementById('relatedGrid');
+    const relatedItems = products
+        ?.filter(item => item.cat === p.cat && item.id !== p.id)
+        .sort(() => 0.5 - Math.random())
+        .slice(0, 4) || [];
+
+    relatedGrid.innerHTML = relatedItems.length
+        ? relatedItems.map(rp => `
+            <div class="group cursor-pointer" onclick="openDetails(${rp.id})">
+                <div class="aspect-[3/4] overflow-hidden bg-[#111] mb-4 relative border border-white/5 group-hover:border-amber-500/30 transition-all duration-500">
+                    <img src="${rp.img}" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                </div>
+                <p class="text-[9px] text-amber-500 uppercase tracking-widest mb-1">${rp.cat}</p>
+                <div class="flex flex-col font-light uppercase text-[10px] tracking-wider">
+                    <span class="text-white">${rp.name}</span>
+                    <span class="text-gray-500 mt-1">PKR ${rp.price.toLocaleString()}</span>
+                </div>
+            </div>
+        `).join('')
+        : `<p class="text-gray-600 text-[10px] uppercase">More pieces coming soon</p>`;
+
+    // Open sidebar
+    const overlay = document.getElementById('productDetailView');
+    overlay.classList.add('details-open');
+    overlay.scrollTo({ top: 0, behavior: 'smooth' });
+    document.body.style.overflow = 'hidden';
+
+    // Add to cart
+    document.getElementById('detailAddBtn').onclick = () => addToCart(p.id);
+}
+
+// CLOSE PRODUCT DETAILS OVERLAY
+function closeDetails() {
+    const overlay = document.getElementById('productDetailView');
+    overlay.classList.remove('details-open');
+    document.body.style.overflow = 'auto';
+}
+
+// SORT PRODUCTS
+function sortItems() {
+    const order = document.getElementById('sortOrder').value;
+    let sortedData = [...products]; 
+    if (order === 'low') sortedData.sort((a, b) => a.price - b.price);
+    else if (order === 'high') sortedData.sort((a, b) => b.price - a.price);
+
+    renderProducts(sortedData);
+}
+
+// FILTER CATEGORY
+function filterCategory(cat) {
+    const filtered = cat === 'all' ? products : products.filter(p => p.cat === cat);
+    renderProducts(filtered);
+
+    const heading = document.getElementById('catTitle');
+    heading.innerText = cat === 'all' ? 'Our Collection' : `${cat} Collection`;
+
+    const shopSection = document.getElementById('shop');
+    shopSection.scrollIntoView({ behavior: 'smooth' });
+}
+
+// SEARCH PRODUCTS
+function searchProducts() {
+    const q = document.getElementById('searchBar').value.toLowerCase();
+    renderProducts(products.filter(p => p.name.toLowerCase().includes(q)));
+}
+
+// CART FUNCTIONS
+function addToCart(id) {
+    const item = products.find(p => p.id === id);
+    if (!item) return;
+
+    cart.push({ ...item, size: selectedSize || 'M' });
+    updateCart();
+    toggleCart();
+}
+
+function updateCart() {
+    document.getElementById('cartCount').innerText = cart.length;
+    const container = document.getElementById('cartItems');
+    container.innerHTML = cart.map((item, index) => `
+        <div class="flex gap-4 items-center">
+            <img src="${item.img}" class="w-16 h-20 object-cover">
+            <div class="flex-1 text-[10px] uppercase">
+                <h4 class="font-bold">${item.name}</h4>
+                <p class="text-amber-500">PKR ${item.price.toLocaleString()}</p>
+            </div>
+            <button onclick="cart.splice(${index},1); updateCart()">&times;</button>
+        </div>
+    `).join('');
+
+    const total = cart.reduce((sum, item) => sum + item.price, 0);
+    document.getElementById('totalPrice').innerText = `PKR ${total.toLocaleString()}`;
+}
+
+// SIZE SELECTION
+function selectSize(size, element) {
+    selectedSize = size;
+    const buttons = element.parentElement.querySelectorAll('.size-btn');
+    buttons.forEach(btn => btn.classList.remove('active'));
+    element.classList.add('active');
+}
+
+// CHECKOUT
+function checkout() {
+    if (cart.length === 0) return alert("👜 Your bag is empty!");
+
+    let message = "Aura Closet Order:%0A------------------%0A";
+    cart.forEach(item => {
+        message += `- ${item.name} (${item.size}): PKR ${item.price.toLocaleString()}%0A`;
+    });
+    message += `%0A*Total: ${document.getElementById('totalPrice').innerText}*`;
+
+    window.open(`https://wa.me/923001234567?text=${message}`);
+}
+
+// CART SIDEBAR
+function toggleCart() {
+    document.getElementById('cartSidebar').classList.toggle('cart-open');
+}
+
+// LOGIN MODAL
+function openLoginModal() {
+    document.getElementById('loginModal').classList.remove('hidden');
+    document.getElementById('loginModal').classList.add('flex');
+}
+
+function closeLoginModal() {
+    document.getElementById('loginModal').classList.add('hidden');
+    document.getElementById('loginModal').classList.remove('flex');
+}
+
+function showLoginSuccess(email) {
+    const toast = document.createElement("div");
+    toast.innerText = `Login, ${email}!`;
+    toast.className = "fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-amber-500 text-black px-6 py-3 rounded-xl shadow-lg text-xs uppercase tracking-widest z-50";
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 3000);
+}
+
+function logout() {
+    localStorage.removeItem("userEmail");
+    localStorage.removeItem("isLoggedIn");
+    sessionStorage.removeItem("userEmail");
+    sessionStorage.removeItem("isLoggedIn");
+
+    const toast = document.createElement("div");
+    toast.innerText = "Logged out successfully!";
+    toast.className = "fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-amber-500 text-black px-6 py-3 rounded-xl shadow-lg text-xs uppercase tracking-widest z-50";
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 3000);
+
+    updateFooterAuth();
+}
+
+// FOOTER AUTH BUTTON
+function updateFooterAuth() {
+    const authBtn = document.getElementById('footerAuthBtn');
+    const loggedIn = localStorage.getItem("isLoggedIn") || sessionStorage.getItem("isLoggedIn");
+
+    if (loggedIn) {
+        authBtn.innerText = "Logout";
+        authBtn.onclick = () => { logout(); };
+    } else {
+        authBtn.innerText = "Login";
+        authBtn.onclick = () => openLoginModal();
+    }
+}
+
+// Accordion toggle
+document.addEventListener("DOMContentLoaded", () => {
+    const accBtns = document.querySelectorAll(".accordion-btn");
+    accBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const content = btn.nextElementSibling;
+            content.style.maxHeight = content.style.maxHeight ? null : content.scrollHeight + "px";
+        });
+    });
+
+    updateFooterAuth(); // Init footer auth button
+});
+
+// MOBILE MENU
+function toggleMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const btn = document.getElementById('menuBtn');
+
+    menu.classList.toggle('menu-open');
+    btn.classList.toggle('open');
+
+    document.body.style.overflow = menu.classList.contains('menu-open') ? 'hidden' : 'auto';
+}
+
+// FOOTER YEAR & BACK TO TOP
+document.getElementById('year').textContent = new Date().getFullYear();
+const backToTopBtn = document.getElementById("backToTopBtn");
+window.onscroll = function () {
+    if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
+        backToTopBtn.classList.add("show");
+    } else {
+        backToTopBtn.classList.remove("show");
+    }
+};
+
+// LUCIDE ICONS INIT
+window.addEventListener("load", () => {
+    if (window.lucide) lucide.createIcons();
+});
+
+// TESTIMONIALS DOTS SLIDER
+const carousel = document.getElementById("testimonialCarousel");
+const dots = document.querySelectorAll(".dot");
+let currentIndex = 0;
+
+function updateCarousel() {
+    carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+    dots.forEach((dot, i) => dot.classList.toggle("active-dot", i === currentIndex));
+}
+
+dots.forEach((dot, index) => {
+    dot.addEventListener("click", () => { currentIndex = index; updateCarousel(); });
+});
+
+setInterval(() => {
+    currentIndex = (currentIndex + 1) % dots.length;
+    updateCarousel();
+}, 5000);
+
+updateCarousel();
+
+
+
+ </script>
+</body>
+</html>
