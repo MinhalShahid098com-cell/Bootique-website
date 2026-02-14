@@ -4,94 +4,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aura Closet | Premium Luxury Shop</title>
-    <!-- CSS LINK -->
-     <link rel="stylesheet" href="style.css">
+    <title>Style Haven Bootique website</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- OWL CAROSUEL -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"/>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
 <!-- Font Links -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
+<!-- 2. SEO Tags -->
+    <meta name="description" content="Discover premium luxury fashion at Style Haven. Handcrafted winter, summer, and formal collections for the elite.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.yourdomain.com">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+    <!-- 3. Social Media Previews (WhatsApp, Instagram, FB) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Style Haven | Handcrafted Luxury Fashion">
+    <meta property="og:description" content="Experience the aura of style. Shop our exclusive seasonal drops.">
+    <meta property="og:url" content="https://www.yourdomain.com">
+    <meta property="og:image" content="https://www.yourdomain.comimages/og-preview.jpg">
+
+    <!-- 4. Twitter / X Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Style Haven | Premium Luxury Boutique">
+    <meta name="twitter:image" content="https://www.yourdomain.comimages/og-preview.jpg">
+
+    <!-- Existing CSS and Font Links -->
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="overflow-x-hidden">
 
-<!-- PRODUCT DETAILS OVERLAY (Next Page Feel) -->
+<!-- PRODUCT DETAILS OVERLAY -->
 <div id="productDetailView" class="sidebar fixed inset-0 z-[150] bg-[#0a0a0a] translate-x-full overflow-y-auto">
-    <div class="max-w-7xl mx-auto px-6 py-10">
-        <button onclick="closeDetails()"
-            class="mb-10 text-amber-500 uppercase tracking-widest text-xs flex items-center">← Back to
-            Collection</button>
-        <div class="grid md:grid-cols-2 gap-16">
-            <!-- Product Image -->
-            <div class="aspect-[3/4] bg-[#111] overflow-hidden">
-                <img id="detailImg" src="" class="w-full h-full object-cover">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-8">
+        <button onclick="closeDetails()" class="mb-6 text-amber-500 uppercase tracking-widest text-xs flex items-center">← Back to Collection</button>
+        <div class="flex flex-col md:flex-row gap-8 relative">
+            <button id="detailWishlistBtn" class="absolute top-0 right-0 text-amber-500 text-2xl z-10">♡</button>
+            <!-- Image -->
+            <div class="w-full md:w-1/2 aspect-[3/4] bg-[#111] overflow-hidden">
+                <img id="detailImg" src="" alt="" class="w-full h-full object-cover">
             </div>
-
-            <!-- Product Info -->
-            <div class="flex flex-col justify-center">
-                <p id="detailCat" class="text-amber-500 uppercase tracking-[0.3em] text-[10px] mb-4"></p>
-                <h2 id="detailName" class="text-5xl md:text-7xl italic mb-6"></h2>
-                <div id="detailStars" class="star-rating mb-6"></div>
-                <p id="detailPrice" class="text-2xl mb-8 font-light"></p>
-
+            <!-- Info -->
+            <div class="flex flex-col w-full md:w-1/2">
+                <p id="detailCat" class="text-amber-500 uppercase tracking-[0.3em] text-[10px] mb-2"></p>
+                <h2 id="detailName" class="text-3xl md:text-5xl italic mb-4 leading-snug"></h2>
+                <div id="detailStars" class="star-rating mb-4"></div>
+                <div id="detailPrice" class="text-xl md:text-2xl mb-6 font-light"></div>
                 <!-- Size Selection -->
-                <div class="mb-8">
-                    <p class="text-[10px] uppercase tracking-widest mb-4 text-gray-500">Select Size</p>
-                    <div class="flex gap-4">
+                <div class="mb-6">
+                    <p class="text-[10px] uppercase tracking-widest mb-3 text-gray-500">Select Size</p>
+                    <div class="flex flex-wrap gap-3">
                         <button onclick="selectSize('S', this)" class="size-btn">S</button>
                         <button onclick="selectSize('M', this)" class="size-btn">M</button>
                         <button onclick="selectSize('L', this)" class="size-btn">L</button>
                         <button onclick="selectSize('XL', this)" class="size-btn">XL</button>
                     </div>
                 </div>
-
-                <!-- Add to Closet Button -->
-                <button id="detailAddBtn" class="detail-action-btn">
-                    Add to Closet
-                </button>
-
-                <!-- PRODUCT DETAILS ACCORDION -->
-                <div class="mt-8">
-                    <div class="accordion">
-                        <button class="accordion-btn">Product Description</button>
-                        <div class="accordion-content">
-                            <p id="detailDesc" class="text-gray-400 text-sm leading-relaxed"></p>
+                <button id="detailAddBtn" class="detail-action-btn w-full py-4 mb-6">Add to Closet</button>
+                <!-- Accordion -->
+                <div class="space-y-2">
+                    <div class="accordion border-b border-white/5">
+                        <button class="accordion-btn py-4 w-full text-left uppercase text-[10px] tracking-widest flex justify-between" onclick="toggleAccordion(this)">Description <span>+</span></button>
+                        <div class="accordion-content overflow-hidden max-h-0 transition-all duration-500">
+                            <p id="detailDesc" class="py-4 text-gray-400 text-xs leading-loose italic"></p>
                         </div>
                     </div>
-
-                    <div class="accordion">
-                        <button class="accordion-btn">Material & Care</button>
-                        <div class="accordion-content">
-                            <ul id="detailCare" class="text-gray-400 text-sm leading-relaxed list-disc list-inside"></ul>
+                    <div class="accordion border-b border-white/5">
+                        <button class="accordion-btn py-4 w-full text-left uppercase text-[10px] tracking-widest flex justify-between" onclick="toggleAccordion(this)">Material & Care <span>+</span></button>
+                        <div class="accordion-content overflow-hidden max-h-0 transition-all duration-500">
+                            <ul id="detailCare" class="py-4 text-gray-400 text-xs leading-relaxed list-disc list-inside"></ul>
                         </div>
                     </div>
                 </div>
-
-                <!-- RELATED PRODUCTS -->
-              <div class="mt-12">
-                <h3 class="serif text-white uppercase tracking-[0.4em] text-xs mb-6">
-                    Related Products </h3>
-                    <div id="relatedProducts" class="flex gap-6 overflow-x-auto pb-4"></div>
+                <!-- Related -->
+                <div class="mt-12 pt-8 border-t border-white/5">
+                    <h3 class="serif text-white uppercase tracking-[0.4em] text-xs mb-6">Related Pieces</h3>
+                    <div id="relatedProducts" class="owl-carousel owl-theme"></div>
                 </div>
-
             </div>
         </div>
     </div>
 </div>
 
-<!-- MOBILE MENU -->
- <div id="mobileMenu" class="fixed inset-0 z-[100] flex flex-col items-center justify-center transform -translate-x-full md:hidden">
-        <a href="javascript:void(0)" onclick="navigateTo('home')" class="py-4 text-2xl serif italic hover:text-amber-500">Home</a>
-        <a href="javascript:void(0)" onclick="navigateTo('Winter')" class="py-4 text-2xl serif italic hover:text-amber-500">Winter</a>
-        <a href="javascript:void(0)" onclick="navigateTo('Summer')" class="py-4 text-2xl serif italic hover:text-amber-500">Summer</a>
-        <a href="javascript:void(0)" onclick="navigateTo('Casual')" class="py-4 text-2xl serif italic hover:text-amber-500">Casual</a>
-        <a href="javascript:void(0)" onclick="navigateTo('Formal')" class="py-4 text-2xl serif italic hover:text-amber-500">Formal</a>
-        <a href="javascript:void(0)" onclick="navigateTo('contact-us')" class="py-4 text-2xl serif italic hover:text-amber-500">Contact Us</a>
+<!-- WISHLIST SIDEBAR -->
+<div id="wishlistSidebar" class="sidebar fixed top-0 right-0 h-full w-full max-w-sm bg-[#0a0a0a] z-[200] translate-x-full p-8 border-l border-white/10 flex flex-col">
+    <div class="flex justify-between items-center mb-10">
+        <h2 class="serif text-2xl italic">Saved Pieces</h2>
+        <button onclick="toggleWishlistSidebar()" class="text-3xl">&times;</button>
     </div>
+    <div id="wishlistItemsContainer" class="flex-1 space-y-6 overflow-y-auto"></div>
+</div>
+
+<!-- MOBILE MENU -->
+<div id="mobileMenu" class="fixed inset-0 z-[100] flex flex-col items-center justify-center transform -translate-x-full md:hidden bg-black/95">
+    <a href="javascript:void(0)" onclick="navigateTo('home')" class="py-3 text-xl font-serif italic hover:text-amber-500 transition-all duration-300">Home</a>
+    <a href="javascript:void(0)" onclick="navigateTo('Winter')" class="py-3 text-xl font-serif italic hover:text-amber-500 transition-all duration-300">Winter</a>
+    <a href="javascript:void(0)" onclick="navigateTo('Summer')" class="py-3 text-xl font-serif italic hover:text-amber-500 transition-all duration-300">Summer</a>
+    <a href="javascript:void(0)" onclick="navigateTo('Casual')" class="py-3 text-xl font-serif italic hover:text-amber-500 transition-all duration-300">Casual</a>
+    <a href="javascript:void(0)" onclick="navigateTo('Formal')" class="py-3 text-xl font-serif italic hover:text-amber-500 transition-all duration-300">Formal</a>
+    <a href="javascript:void(0)" onclick="navigateTo('contact-us')" class="py-3 text-xl font-serif italic hover:text-amber-500 transition-all duration-300">Contact Us</a>
+</div>
 
 <!-- NAVIGATION -->
 <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-500 border-b border-white/5 bg-black/60 backdrop-blur-xl">
@@ -111,7 +132,7 @@
 
 <!-- Desktop Navigation Links -->
         <div class="hidden lg:flex space-x-12 text-[10px] uppercase tracking-[0.3em] font-bold text-gray-300">
-            <button onclick="filterCategory('all')" class="hover:text-amber-500 transition-colors duration-300">Collections</button>
+            <button onclick="filterCategory('all')" class="hover:text-amber-500 transition-colors duration-300">All</button>
             <button onclick="filterCategory('Formal')" class="hover:text-amber-500 transition-colors duration-300">Formal</button>
             <button onclick="filterCategory('Casual')" class="hover:text-amber-500 transition-colors duration-300">Casual</button>
             <button onclick="filterCategory('Winter')" class="hover:text-amber-500 transition-colors duration-300">Winter</button>
@@ -123,6 +144,12 @@
                     <button onclick="openLoginModal()" class="login-btn-premium group" title="Login">
                         <i data-lucide="user"
                             class="w-5 h-5 text-amber-500 transition-transform group-hover:scale-110"></i>
+                    </button>
+
+                    <!-- Wishlist Icon -->
+                    <button onclick="showWishlist()" class="wishlist-btn-premium relative group" title="Wishlist">
+                        <span class="text-lg">❤️</span>
+                        <span id="wishlistCount" class="wishlist-badge-premium">0</span>
                     </button>
 
                     <!-- Cart Icon -->
@@ -173,20 +200,42 @@
         </div>
     </div>
 
-
-    <!-- HERO -->
-    <section id="home" class="h-screen flex items-center justify-center text-center relative overflow-hidden">
-        <div class="absolute inset-0 bg-[url('https://images.unsplash.com')] bg-cover bg-center opacity-30"></div>
-        <div class="relative z-10 px-6">
-            <p class="text-amber-500 tracking-[0.8em] uppercase text-xs mb-4">Luxury Boutique</p>
-            <h1 class="text-5xl md:text-8xl italic mb-8">The Aura of Style</h1>
-
-            <a href="#shop" class="hero-btn-premium">
-                Shop Collection
-            </a>
-
+<!-- LUXURY SALE VIDEO BANNER -->
+<section class="w-full bg-[#0a0a0a] py-16 px-6">
+    <div class="max-w-7xl mx-auto relative overflow-hidden group border border-amber-500/20">
+        
+        <!-- Sale Badge -->
+        <div class="absolute top-6 left-6 z-20 bg-amber-500 text-black px-4 py-1 text-[10px] font-bold uppercase tracking-widest">
+            Seasonal Sale
         </div>
-    </section>
+
+        <div class="h-[350px] md:h-[500px] w-full overflow-hidden relative bg-black">
+            <!-- Video Background -->
+            <video autoplay muted loop playsinline preload="auto" class="w-full h-full object-cover opacity-40">
+                <source src="https://player.vimeo.com" type="video/mp4">
+            </video>
+            
+            <!-- Sale Content -->
+            <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
+                <p class="text-white tracking-[0.8em] uppercase text-[9px] mb-4 opacity-70">Limited Time Only</p>
+                
+                <h2 class="serif text-4xl md:text-7xl italic text-white mb-2">The Private Sale</h2>
+                <div class="flex items-center gap-4 mb-8">
+                    <span class="h-[1px] w-10 bg-amber-500"></span>
+                    <p class="text-amber-500 serif text-2xl md:text-3xl italic">Up to 20% Off</p>
+                    <span class="h-[1px] w-10 bg-amber-500"></span>
+                </div>
+
+                <p class="text-gray-400 text-[9px] uppercase tracking-[0.4em] mb-10 max-w-xs leading-loose">
+                    Selected winter and formal pieces from our exclusive couture line.
+                </p>
+                
+                <a href="#shop" class="hero-btn-premium">
+                Visit Sale  </a>
+             </div>
+        </div>
+    </div>
+</section>
 
     <!-- SHOP FILTERS -->
     <section class="pt-32 px-6 max-w-7xl mx-auto">
@@ -207,7 +256,6 @@
         </div>
     </section>
 
-
     <!-- SHOP SECTION -->
     <main id="shop" class="max-w-7xl mx-auto px-6 py-24">
         <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12"></div>
@@ -221,7 +269,7 @@
             
             <div class="min-w-full px-6">
                 <p class="italic text-gray-400 mb-6">
-                    “Authentic products, guaranteed quality. We're here to asist you 24/7.”
+                    “Authentic products, guaranteed quality. We're here to assist you 24/7.”
                 </p>
                 <p class="text-amber-500 uppercase tracking-widest text-xs">— Style Haven.</p>
             </div>
@@ -270,7 +318,6 @@
         </div>
     </section>
 
-
     <!-- FOOTER SECTION -->
     <footer id="footer" class="bg-[#050505] border-t border-white/5 pt-24 pb-12 px-6">
         <div class="max-w-7xl mx-auto">
@@ -306,7 +353,7 @@
                     <nav class="flex flex-col space-y-5">
                         <a href="#shop" class="footer-link">View Collection</a>
                         <a href="#home" class="footer-link">Home</a>
-                        <a href="#" class="footer-link" id="openSizeGuide">Size Guide</a>
+                    <a href="javascript:void(0)" class="footer-link" id="openSizeGuide">Size Guide</a>
                         <a href="#reviews" class="footer-link">Returns & Exchange</a>
                     </nav>
                 </div>
@@ -393,12 +440,74 @@
     </div>
 </footer>
 
+<!-- WISHLIST SIDEBAR -->
+<div id="wishlistSidebar"
+    class="sidebar fixed top-0 right-0 h-full w-full max-w-sm bg-[#0a0a0a] z-[200] translate-x-full p-8 border-l border-white/10 flex flex-col">
+    <div class="flex justify-between items-center mb-10">
+        <h2 class="serif text-2xl italic">Saved Pieces</h2>
+        <button onclick="toggleWishlistSidebar()" class="text-3xl">&times;</button>
+    </div>
+    
+    <!-- This is where wishlist items will be injected -->
+    <div id="wishlistItemsContainer" class="flex-1 space-y-6 overflow-y-auto"></div>
+    
+    <div class="border-t border-white/10 pt-6">
+        <button onclick="filterCategory('all'); toggleWishlistSidebar();" class="checkout-btn-premium">
+            Explore More
+        </button>
+    </div>
+</div>
+
 <!-- size modal -->
-            <div id="sizeGuideModal" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center hidden">
-    <div class="bg-[#111] p-6 rounded w-96">
-        <h2 class="serif text-2xl mb-4">Size Guide</h2>
-        <p class="text-sm mb-2">S = Small, M = Medium, L = Large, XL = Extra Large</p>
-        <button id="closeSizeGuide" class="checkout-btn-premium mt-4">Close</button>
+<div id="sizeGuideModal" class="fixed inset-0 z-[1000] bg-black/90 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="bg-[#0a0a0a] border border-white/10 p-6 sm:p-10 w-full max-w-2xl relative shadow-2xl overflow-hidden">
+        
+        <!-- Close Button -->
+        <button id="closeSizeGuide" class="absolute top-4 right-4 text-gray-500 hover:text-amber-500 text-3xl transition-colors">&times;</button>
+        
+        <h2 class="serif text-3xl italic text-amber-500 mb-8 text-center">Size Guide</h2>
+
+        <!-- Responsive Table Container -->
+        <div class="overflow-x-auto border border-white/10 rounded-sm">
+            <table class="w-full text-[11px] uppercase tracking-[0.2em] text-gray-400 border-collapse">
+                <thead>
+                    <tr class="bg-white/5 text-amber-500">
+                        <th class="p-4 border border-white/10 font-bold">Size</th>
+                        <th class="p-4 border border-white/10">Shoulder</th>
+                        <th class="p-4 border border-white/10">Chest</th>
+                        <th class="p-4 border border-white/10">Waist</th>
+                        <th class="p-4 border border-white/10">Hips</th>
+                    </tr>
+                </thead>
+                <tbody class="text-center">
+                    <tr class="hover:bg-white/5 transition-colors">
+                        <td class="p-4 border border-white/10 text-white font-bold">S</td>
+                        <td class="p-4 border border-white/10">14"</td>
+                        <td class="p-4 border border-white/10">36"-38"</td>
+                        <td class="p-4 border border-white/10">32"-34"</td>
+                        <td class="p-4 border border-white/10">38"-40"</td>
+                    </tr>
+                    <tr class="bg-white/[0.02] hover:bg-white/5 transition-colors">
+                        <td class="p-4 border border-white/10 text-white font-bold">M</td>
+                        <td class="p-4 border border-white/10">15"</td>
+                        <td class="p-4 border border-white/10">40"-42"</td>
+                        <td class="p-4 border border-white/10">36"-38"</td>
+                        <td class="p-4 border border-white/10">42"-44"</td>
+                    </tr>
+                    <tr class="hover:bg-white/5 transition-colors">
+                        <td class="p-4 border border-white/10 text-white font-bold">L</td>
+                        <td class="p-4 border border-white/10">16"</td>
+                        <td class="p-4 border border-white/10">44"-46"</td>
+                        <td class="p-4 border border-white/10">40"-42"</td>
+                        <td class="p-4 border border-white/10">46"-48"</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p class="mt-6 text-[10px] text-center text-gray-600 uppercase tracking-[0.3em]">
+            * All measurements provided are in inches.
+        </p>
     </div>
 </div>
 

@@ -77,6 +77,57 @@
             border: 2px solid #0a0a0a;
         }
 
+        /* WISHLIST LOGIC */
+.wishlist-active {
+    color: #f59e0b !important; 
+    text-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
+    transform: scale(1.2);
+}
+
+.product-card .wishlist-btn {
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.product-card .wishlist-btn:hover {
+    transform: scale(1.3);
+}
+.wishlist-badge-premium {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    background: #f59e0b; 
+    color: black;
+    font-size: 8px;
+    font-weight: 800;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 2px solid #0a0a0a; 
+    transition: all 0.3s ease;
+}
+
+.wishlist-badge-premium.hidden {
+    display: none;
+}
+/* Animation for Wishlist Sidebar */
+.wishlist-sidebar-open {
+    transform: translateX(0) !important;
+}
+
+/* Subtle pulse animation for the counter when it updates */
+@keyframes counterPop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.4); }
+    100% { transform: scale(1); }
+}
+
+.counter-animate {
+    animation: counterPop 0.4s ease;
+}
+
         /* --- 3. RECTANGULAR ACTION BUTTONS --- */
         .hero-btn-premium,
         .newsletter-btn-premium,
@@ -428,22 +479,15 @@
     padding: 0 16px;
 }
 
- 
-  /* Menu ko dikhane ke liye JS class */
   #mobileMenu.menu-open {
     transform: translateX(0) !important;
   }
 
-  /* Active link color */
   #mobileMenu a.active {
-    color: #f59e0b !important; /* Amber-500 */
+    color: #f59e0b !important; 
   }
 
-  
-/* ===============================
-   PRODUCT DETAIL RESPONSIVE FIX
-   (NO DESIGN CHANGE)
-================================ */
+/* PRODUCT DETAIL RESPONSIVE FIX */
 
 /* Tablets */
 @media (max-width: 1024px) {
@@ -502,3 +546,100 @@
     font-size: 9px;
   }
 }
+
+/* SALE */
+.sale-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: #f59e0b; 
+    color: #000;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    padding: 6px 10px;
+    text-transform: uppercase;
+    border-radius: 20px;
+    z-index: 10;
+    box-shadow: 0 6px 15px rgba(239,68,68,0.35);
+}
+.modal-old-price {
+    font-size: 12px;
+    color: #64748b;
+    text-decoration: line-through;
+    margin-right: 8px;
+}
+
+.modal-new-price {
+    font-size: 18px;
+    font-weight: 700;
+    color: #f59e0b;
+}
+
+.modal-sale-badge {
+    display: inline-block;
+    background: #f59e0b;
+    color: #000;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    padding: 6px 12px;
+    border-radius: 999px;
+    margin-bottom: 12px;
+}
+
+.related-sale-badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: #f59e0b;
+    color: #000;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    padding: 4px 8px;
+    border-radius: 999px;
+    z-index: 10;
+}
+
+/* SIZE GUIDE CSS */
+#sizeGuideModal.flex {
+    display: flex !important;
+    animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Owl Carousel Dots Styling */
+.owl-theme .owl-dots .owl-dot span {
+    background: #333 !important;
+    width: 6px;
+    height: 6px;
+    transition: all 0.3s ease;
+}
+
+.owl-theme .owl-dots .owl-dot.active span {
+    background: #f59e0b !important; /* Gold */
+    width: 20px;
+    border-radius: 10px;
+}
+
+/* Ensure images maintain luxury ratio */
+#relatedProducts .item img {
+    aspect-ratio: 3/4;
+    object-fit: cover;
+}
+/* Sidebar ko dikhane ke liye */
+.details-open {
+    transform: translateX(0) !important;
+}
+
+/* Sidebar ki smooth transition ke liye */
+#productDetailView {
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
